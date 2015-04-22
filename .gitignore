@@ -21,20 +21,5 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
-.loadpath
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# CDT-specific
-.cproject
-
-# sbteclipse plugin
-.target
-
-# TeXlipse plugin
+gin
 .texlipse

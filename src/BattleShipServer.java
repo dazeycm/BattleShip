@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -10,6 +12,7 @@ public class BattleShipServer	{
 	ServerThread playerA;
 	ServerThread playerB;
 	ServerSocket ss = null;
+	BattleShipGame bsg;
 	
 	public void getClients()	{
 		this.ss = null;
@@ -28,7 +31,7 @@ public class BattleShipServer	{
 			e.printStackTrace();
 		}
 		ServerThread player1 = new ServerThread(client);
-		player1.start();
+		player1.run();
 		
 		try {
 			client = ss.accept();
@@ -36,8 +39,11 @@ public class BattleShipServer	{
 			e.printStackTrace();
 		}
 		ServerThread player2 = new ServerThread(client);
-		player2.start();
+		player2.run();
 		
+		bsg = new BattleShipGame(player1, player2);
+		
+		bsg.askForNames();
 		while(true){}
 		
 	}
@@ -48,17 +54,30 @@ public class BattleShipServer	{
 	}
 }
 
-class ServerThread extends Thread	{
+class ServerThread implements Runnable {
 
 	Socket client;
 	String name;
+	InputStream input;
+	OutputStream output;
 	
 	public ServerThread(Socket client) {
 		this.client = client;
 	}
 
 	public void run() {
+		initIO();
 		while(true){}
+	}
+
+	private void initIO() {
+		try {
+			input = client.getInputStream();
+			output = client.getOutputStream();
+		} catch (IOException e) {
+			System.out.println("Error in retrieving input and output streams for threads");
+			e.printStackTrace();
+		}
 	}
 	
 }

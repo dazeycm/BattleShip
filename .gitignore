@@ -33,10 +33,6 @@ local.properties
 # CDT-specific
 .cproject
 
-
-# PDT-specific
-.buildpath
-
 # sbteclipse plugin
 .target
 

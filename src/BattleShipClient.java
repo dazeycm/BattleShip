@@ -34,23 +34,6 @@ public class BattleShipClient{
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
 		
-		final int PORT = 1993;
-		
-		InetAddress address;
-		String hostName = null;
-		
-		
-		
-		Socket s = null;
-		try {
-			s = new Socket(hostName, PORT);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
 		while(true){}
 	}
 

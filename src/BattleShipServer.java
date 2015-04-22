@@ -79,5 +79,14 @@ class ServerThread implements Runnable {
 			e.printStackTrace();
 		}
 	}
+
+	public void sendMessage(String message) {
+		try {
+			output.write("message".getBytes());
+		} catch (IOException e) {
+			System.out.println("Error sending message from server to client");
+			e.printStackTrace();
+		}
+	}
 	
 }

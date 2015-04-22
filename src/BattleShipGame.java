@@ -10,7 +10,7 @@ public class BattleShipGame {
 	}
 
 	public void askForNames() {
-		
+		player1.sendMessage(new String("Placeholder"));
 	}
 
 	

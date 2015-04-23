@@ -1,0 +1,47 @@
+Craig Dazey 
+Nora Husani
+CSE 211 
+
+Battleship Program Grammar 
+
+
+
+Message::= albus || snape || voldy || hogwarts || curse || auror || snitch || hooch
+
+albus::= ‘albus’ [A-Z]* //this is the “what is your name?” message
+
+snape::= ‘snape’ [A-Z]* //this is the “my name is” message 
+
+voldy::= ‘voldy’ [A-Z]* //this is the “place your ships” message 
+
+hogwarts::= hogwarts’ expressType quidditchPoints 
+
+expressType::= ‘aircraft_carrier’ || ‘battleship’ || ‘submarine’ || ‘cruiser’ || ‘patrol_boat’ 
+//aircraft_carrier = 5 battleship = 4 submarine = 3 cruiser =3 patrol_boat = 2
+
+quidditchPoints::= point {quidditchPoints}
+
+point::= ‘(‘ [0-9] ‘,’ [0-9] ‘)’ //this is the “coordinate” message 
+
+curse ::= ‘cruse’ point //this is the “this is where I want to attack” message
+
+auror::= ‘auror’ (crucio || stupefy || avadaKedavra)
+
+curio::= ‘curio’ point //this is the “hit” message 
+
+stupefy::= ‘stupefy’ point //this is the “miss” message 
+
+avadaKedavra::= ‘avadaKedavra’ expressType //this is the “sunk” message 
+
+snitch::= ‘GAME_OVER’ playAgain 
+
+playAgain::= ‘YES’ || ‘NO’
+
+hooch::= ‘hooch’ score shots accuracy 
+
+score::= ‘score’ [0-9]*
+
+shots::= ‘Shots Player 1: ‘ [0-9]* ‘Shots Player 2: ‘ [0-9]*
+
+accuracy::= ‘Accuracy: ‘ [0-9]*
+

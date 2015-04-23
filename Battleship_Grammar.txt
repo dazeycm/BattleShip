@@ -31,7 +31,7 @@ crucio::= ‘CRUCIO’ point //this is the “hit” message
 
 stupefy::= ‘STUPEFY’ point //this is the “miss” message 
 
-avadaKedavra::= ‘AVADAKEDVARA’ expressType //this is the “sunk” message 
+avadaKedavra::= ‘AVADAKEDAVRA’ expressType //this is the “sunk” message 
 
 snitch::= ‘GAME_OVER’ playAgain 
 

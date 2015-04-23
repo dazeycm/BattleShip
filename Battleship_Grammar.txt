@@ -8,40 +8,40 @@ Battleship Program Grammar
 
 Message::= albus || snape || voldy || hogwarts || curse || auror || snitch || hooch
 
-albus::= ‘albus’ [A-Z]* //this is the “what is your name?” message
+albus::= ‘ALBUS’ [A-Z]* //this is the “what is your name?” message
 
-snape::= ‘snape’ [A-Z]* //this is the “my name is” message 
+snape::= ‘SNAPE’ [A-Z]* //this is the “my name is” message 
 
-voldy::= ‘voldy’ [A-Z]* //this is the “place your ships” message 
+voldy::= ‘VOLDY’ [A-Z]* //this is the “place your ships” message 
 
-hogwarts::= hogwarts’ expressType quidditchPoints 
+hogwarts::= 'HOGWARTS’ expressType quidditchPoints 
 
-expressType::= ‘aircraft_carrier’ || ‘battleship’ || ‘submarine’ || ‘cruiser’ || ‘patrol_boat’ 
+expressType::= ‘AIRCRAFT_CARRIER’ || ‘BATTLESHIP’ || ‘SUBMARINE’ || ‘CRUISER’ || ‘PATROL_BOAT’ 
 //aircraft_carrier = 5 battleship = 4 submarine = 3 cruiser =3 patrol_boat = 2
 
 quidditchPoints::= point {quidditchPoints}
 
 point::= ‘(‘ [0-9] ‘,’ [0-9] ‘)’ //this is the “coordinate” message 
 
-curse ::= ‘cruse’ point //this is the “this is where I want to attack” message
+curse ::= ‘CURSE’ point //this is the “this is where I want to attack” message
 
-auror::= ‘auror’ (crucio || stupefy || avadaKedavra)
+auror::= ‘AUROR’ (crucio || stupefy || avadaKedavra)
 
-curio::= ‘curio’ point //this is the “hit” message 
+crucio::= ‘CRUCIO’ point //this is the “hit” message 
 
-stupefy::= ‘stupefy’ point //this is the “miss” message 
+stupefy::= ‘STUPEFY’ point //this is the “miss” message 
 
-avadaKedavra::= ‘avadaKedavra’ expressType //this is the “sunk” message 
+avadaKedavra::= ‘AVADAKEDVARA’ expressType //this is the “sunk” message 
 
 snitch::= ‘GAME_OVER’ playAgain 
 
 playAgain::= ‘YES’ || ‘NO’
 
-hooch::= ‘hooch’ score shots accuracy 
+hooch::= ‘HOOCH’ score shots accuracy 
 
-score::= ‘score’ [0-9]*
+score::= ‘SCORE’ [0-9]*
 
-shots::= ‘Shots Player 1: ‘ [0-9]* ‘Shots Player 2: ‘ [0-9]*
+shots::= ‘SHOTS_P1:‘ [0-9]* ‘SHOTS_P2:‘ [0-9]*
 
-accuracy::= ‘Accuracy: ‘ [0-9]*
+accuracy::= ‘ACCURACY: ‘ [0-9]*
 

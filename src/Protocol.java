@@ -1,5 +1,5 @@
 
-public class HPBSProtocol {
+public class Protocol {
 	
 	/**
 	 * This is the "what is your name?" message

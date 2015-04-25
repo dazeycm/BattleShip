@@ -1,6 +1,9 @@
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -9,10 +12,10 @@ public class BattleShipServer	{
 	
 	static final int PORT = 1993;
 	
-	ServerThread playerA;
-	ServerThread playerB;
+	ServerThread player1;
+	ServerThread player2;
 	ServerSocket ss = null;
-	BattleShipGame bsg;
+	static BattleShipGame bsg;
 	
 	public void getClients()	{
 		this.ss = null;
@@ -30,41 +33,41 @@ public class BattleShipServer	{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ServerThread player1 = new ServerThread(client);
-		player1.run();
+		this.player1 = new ServerThread(client);
 		
+		Socket client2 = null;
 		try {
-			client = ss.accept();
+			client2 = ss.accept();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ServerThread player2 = new ServerThread(client);
-		player2.run();
+		this.player2 = new ServerThread(client2);
+		player1.start();
+		player2.start();
 		
-		bsg = new BattleShipGame(player1, player2);
-		
-		bsg.askForNames();
-		while(true){}
-		
+		BattleShipServer.bsg = new BattleShipGame(player1, player2);
 	}
 	
 	public static void main(String[] args) {
 		BattleShipServer bss = new BattleShipServer();
 		bss.getClients();
+		bsg.askForNames();
+		while(true){}
 	}
 }
 
-class ServerThread implements Runnable {
+class ServerThread extends Thread{
 
 	Socket client;
 	String name;
-	InputStream input;
-	OutputStream output;
+	BufferedReader input;
+	PrintWriter output;
 	
 	public ServerThread(Socket client) {
 		this.client = client;
 	}
 
+	
 	public void run() {
 		initIO();
 		while(true){}
@@ -72,21 +75,29 @@ class ServerThread implements Runnable {
 
 	private void initIO() {
 		try {
-			input = client.getInputStream();
-			output = client.getOutputStream();
+			input = new BufferedReader(new InputStreamReader((client.getInputStream())));
+			output = new PrintWriter(client.getOutputStream());
 		} catch (IOException e) {
 			System.out.println("Error in retrieving input and output streams for threads");
 			e.printStackTrace();
 		}
 	}
 
-	public void sendMessage(String message) {
+	public void sendMessage(String message)	{
+		output.println(message);
+		output.flush();
+	}
+
+
+	public String receiveMessage() {
 		try {
-			output.write("message".getBytes());
+			return this.input.readLine();
 		} catch (IOException e) {
-			System.out.println("Error sending message from server to client");
+			System.out.println("Error when client tried to read message");
 			e.printStackTrace();
 		}
+		
+		return null;
 	}
 	
 }

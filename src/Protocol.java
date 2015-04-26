@@ -72,7 +72,11 @@ public class Protocol {
 	/**
 	 * This is the stats message 
 	 */
-	public static final String HOOCH = "HOOCH ";
+	public static final String HOOCH = "HOOCH";
+	/**
+	 * This is the winner message 
+	 */
+	public static final String WINNER = "WINNER";
 	/**
 	 * This is the score message 
 	 */

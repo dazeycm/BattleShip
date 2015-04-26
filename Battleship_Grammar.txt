@@ -39,7 +39,9 @@ snitch::= ‘GAME_OVER’ playAgain
 
 playAgain::= ‘YES’ | ‘NO’
 
-hooch::= ‘HOOCH’ score shots accuracy 
+hooch::= ‘HOOCH’ winner score shots accuracy 
+
+winner::= 'WINNER' [A-Z]*
 
 score::= ‘SCORE’ [0-9]*
 

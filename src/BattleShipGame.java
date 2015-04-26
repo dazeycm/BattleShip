@@ -12,13 +12,16 @@ public class BattleShipGame {
 	public void askForNames() {
 		player1.sendMessage(Protocol.ALBUS);
 		String name = player1.receiveMessage();
-		name = name.substring(name.lastIndexOf(" ") + 1);
+		name = name.substring(name.indexOf(" ") + 1);
 		player1.name = name;
 		
 		player2.sendMessage(Protocol.ALBUS);
 		name = player2.receiveMessage();
-		name = name.substring(name.lastIndexOf(" ") + 1);
+		name = name.substring(name.indexOf(" ") + 1);
 		player2.name = name;
+	}
+	
+	public void getShips()	{
 		
 	}
 

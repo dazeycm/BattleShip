@@ -1,3 +1,5 @@
+import java.awt.event.*;
+
 import javax.swing.*;
 
 public class BSAskName extends JPanel	{
@@ -6,8 +8,11 @@ public class BSAskName extends JPanel	{
 	private JTextField nameEntry;
 	private JButton enterName;
 	private JLabel enterNameText;
+	public String name = null;
+	private BattleShipClient client;
 	
-	public BSAskName()	{
+	public BSAskName(final BattleShipClient client)	{
+		this.client = client;
 		this.setLayout(null);
 		
 		nameEntry = new JTextField();
@@ -15,7 +20,16 @@ public class BSAskName extends JPanel	{
 		this.add(nameEntry);
 		
 		enterName = new JButton("Submit");
-		enterName.setBounds(300, 110, 70, 30);
+		enterName.setBounds(280, 110, 90, 30);
+		enterName.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                name = nameEntry.getText();
+                frame.setVisible(false);
+                frame.dispose();
+                client.sendMessage(Protocol.SNAPE + name);
+            }
+        });      
 		this.add(enterName);
 		
 		enterNameText = new JLabel("Please enter your name:");
@@ -34,5 +48,4 @@ public class BSAskName extends JPanel	{
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-
 }

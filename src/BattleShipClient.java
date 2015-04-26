@@ -64,9 +64,7 @@ public class BattleShipClient{
 		while(true)	{
 			String message = bsc.readLine();
 			if(message.contains(Protocol.ALBUS))	{
-				System.out.println("Please enter a name: ");
-				String name = bsc.kb.nextLine();
-				bsc.sendMessage(Protocol.SNAPE + name);
+				BSAskName askName = new BSAskName(bsc);
 			}
 		}
 		

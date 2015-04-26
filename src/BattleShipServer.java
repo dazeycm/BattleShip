@@ -42,6 +42,7 @@ public class BattleShipServer	{
 			e.printStackTrace();
 		}
 		this.player2 = new ServerThread(client2);
+		
 		player1.start();
 		player2.start();
 		
@@ -65,11 +66,11 @@ class ServerThread extends Thread{
 	
 	public ServerThread(Socket client) {
 		this.client = client;
+		initIO();
 	}
 
 	
 	public void run() {
-		initIO();
 		while(true){}
 	}
 

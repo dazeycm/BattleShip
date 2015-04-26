@@ -4,9 +4,11 @@ CSE 211
 
 Battleship Program Grammar 
 
+game::= messageList
 
+messageList::= message | message messageList
 
-Message::= albus || snape || voldy || hogwarts || curse || auror || snitch || hooch
+message::= albus | snape | voldy | hogwarts | curse | auror | snitch | hooch
 
 albus::= ‘ALBUS’ [A-Z]* //this is the “what is your name?” message
 
@@ -16,7 +18,7 @@ voldy::= ‘VOLDY’ [A-Z]* //this is the “place your ships” message
 
 hogwarts::= 'HOGWARTS’ expressType quidditchPoints 
 
-expressType::= ‘AIRCRAFT_CARRIER’ || ‘BATTLESHIP’ || ‘SUBMARINE’ || ‘CRUISER’ || ‘PATROL_BOAT’ 
+expressType::= ‘AIRCRAFT_CARRIER’ | ‘BATTLESHIP’ | ‘SUBMARINE’ | ‘CRUISER’ | ‘PATROL_BOAT’ 
 //aircraft_carrier = 5 battleship = 4 submarine = 3 cruiser =3 patrol_boat = 2
 
 quidditchPoints::= point {quidditchPoints}
@@ -25,7 +27,7 @@ point::= ‘(‘ [0-9] ‘,’ [0-9] ‘)’ //this is the “coordinate” mess
 
 curse ::= ‘CURSE’ point //this is the “this is where I want to attack” message
 
-auror::= ‘AUROR’ (crucio || stupefy || avadaKedavra)
+auror::= ‘AUROR’ (crucio | stupefy | avadaKedavra)
 
 crucio::= ‘CRUCIO’ point //this is the “hit” message 
 
@@ -35,7 +37,7 @@ avadaKedavra::= ‘AVADAKEDAVRA’ expressType //this is the “sunk” message
 
 snitch::= ‘GAME_OVER’ playAgain 
 
-playAgain::= ‘YES’ || ‘NO’
+playAgain::= ‘YES’ | ‘NO’
 
 hooch::= ‘HOOCH’ score shots accuracy 
 

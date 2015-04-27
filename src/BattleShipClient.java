@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class BattleShipClient{
 	final int PORT = 1993;

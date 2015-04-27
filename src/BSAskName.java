@@ -23,8 +23,8 @@ public class BSAskName extends JPanel	{
 		enterName.setBounds(280, 110, 90, 30);
 		enterName.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
-            {
-                name = nameEntry.getText();
+            { 
+            	name = nameEntry.getText();
                 frame.setVisible(false);
                 frame.dispose();
                 client.sendMessage(Protocol.SNAPE + name);

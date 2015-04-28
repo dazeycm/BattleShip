@@ -29,7 +29,7 @@ public class BattleShipGame {
 		player1.sendMessage(Protocol.SNAPE);
 		player2.sendMessage(Protocol.SNAPE);
 		
-		//make boards here
+		//make boards here from received message
 	}
 
 	

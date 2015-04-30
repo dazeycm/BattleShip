@@ -70,7 +70,6 @@ public class BSAskShips extends JPanel {
 	
 	public class ButtonResponder implements ActionListener {
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			BSButton button = (BSButton) e.getSource();
 			if(!button.hasBeenClicked())	{

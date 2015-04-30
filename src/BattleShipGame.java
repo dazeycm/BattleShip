@@ -32,7 +32,6 @@ public class BattleShipGame {
 		//make boards here from received message
 	}
 
-	
 	public static void main(String[] args) {
 		
 	}

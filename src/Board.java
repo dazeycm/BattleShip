@@ -22,8 +22,4 @@ public class Board {
 	}
 	
 	//need method to try and shoot ship
-	
-	
-	
-	
 }

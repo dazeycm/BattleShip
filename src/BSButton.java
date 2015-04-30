@@ -1,9 +1,6 @@
 import java.awt.Color;
-
 import javafx.util.Pair;
-
 import javax.swing.JButton;
-
 
 public class BSButton extends JButton{
 	int butNum;
@@ -22,7 +19,7 @@ public class BSButton extends JButton{
 		this.clicked = false;
 	}
 	
-	public Pair getXY()	{
+	public Pair<Integer, Integer> getXY()	{
 		return new Pair<Integer, Integer>(this.x, this.y);
 	}
 	
@@ -37,6 +34,4 @@ public class BSButton extends JButton{
 	public String toString()	{
 		return butNum + " " + x + " " + y;
 	}
-	
-
 }

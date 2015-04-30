@@ -6,10 +6,8 @@ public class BattleShipClient{
 	final int PORT = 1993;
 	
 	private Socket socket;
-	
 	public BufferedReader input;
 	public PrintWriter output;
-	
 	public Scanner kb;
 	
 	public BattleShipClient() {
@@ -68,7 +66,5 @@ public class BattleShipClient{
 				BSAskName askName = new BSAskName(bsc);
 			}
 		}
-		
 	}
-
 }

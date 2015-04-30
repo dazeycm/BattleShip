@@ -62,7 +62,6 @@ class ServerThread extends Thread{
 		initIO();
 	}
 
-	
 	public void run() {
 		while(true){}
 	}
@@ -82,7 +81,6 @@ class ServerThread extends Thread{
 		output.flush();
 	}
 
-
 	public String receiveMessage() {
 		try {
 			return this.input.readLine();
@@ -93,5 +91,4 @@ class ServerThread extends Thread{
 		
 		return null;
 	}
-	
 }

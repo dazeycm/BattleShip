@@ -6,7 +6,7 @@ public class Board {
 	int[][] board = new int[11][11];
 	HashMap<String, Ship> ships = new HashMap<String, Ship>();
 	
-	public void addShip(String type, ArrayList<Pair> locs)	{
+	public void addShip(String type, ArrayList<Pair<Integer, Integer>> locs)	{
 		Ship ship = new Ship(locs.size(), locs);
 		ships.put(type, ship);
 	}

@@ -3,12 +3,13 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class BSAskName extends JPanel	{
-
+	private static final long serialVersionUID = 2575364361360064192L;
 	private JFrame frame;
 	private JTextField nameEntry;
 	private JButton enterName;
 	private JLabel enterNameText;
 	public String name = null;
+	@SuppressWarnings("unused")
 	private BattleShipClient client;
 	
 	public BSAskName(final BattleShipClient client)	{

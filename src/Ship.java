@@ -3,9 +3,9 @@ import javafx.util.Pair;
 
 public class Ship {
 	private int health;
-	public ArrayList<Pair> locs;
+	public ArrayList<Pair<Integer, Integer>> locs;
 	
-	public Ship(int health, ArrayList<Pair> locs)	{
+	public Ship(int health, ArrayList<Pair<Integer, Integer>> locs)	{
 		this.health = health;
 		for(int i = 0; i < locs.size(); i++)	{
 			this.locs.add(locs.get(i));

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class BSAskShips extends JPanel {
+	private static final long serialVersionUID = 1929426850051553458L;
 	private JFrame frame;
 	private ArrayList<BSButton> clickedButtons;
+	@SuppressWarnings("unused")
 	private BattleShipClient client;
 	
 	public BSAskShips(BattleShipClient client)	{

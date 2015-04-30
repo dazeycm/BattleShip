@@ -59,11 +59,11 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
-		BSAskShips bsa = new BSAskShips(bsc);
+		new BSAskShips(bsc);
 		while(true)	{
 			String message = bsc.readLine();
 			if(message.contains(Protocol.ALBUS))	{
-				BSAskName askName = new BSAskName(bsc);
+				new BSAskName(bsc);
 			}
 		}
 	}

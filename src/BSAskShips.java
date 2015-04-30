@@ -9,19 +9,21 @@ import javax.swing.JPanel;
 
 
 public class BSAskShips extends JPanel {
-	JFrame frame;
+	private JFrame frame;
+	private ArrayList<BSButton> clickedButtons;
 	private BattleShipClient client;
 	
 	public BSAskShips(BattleShipClient client)	{
 		this.client = client;
 		this.setLayout(null);
+		clickedButtons = new ArrayList<BSButton>();
 		
 		//Button information
 		int id = 0;
 		int x = 0;
 		int y = 0;
-		int width = 55;
-		int height = 55;
+		int width = 45;
+		int height = 45;
 		
 		//Button placement
 		int count = 0;
@@ -62,14 +64,10 @@ public class BSAskShips extends JPanel {
 		frame = new JFrame("Please place your ships!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
-		frame.setBounds(0,0, 625, 800);
+		frame.setBounds(0,0, 525, 700);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
-	}
-
-	public static void main(String[] args) {
-		
 	}
 	
 	public class ButtonResponder implements ActionListener {
@@ -77,10 +75,18 @@ public class BSAskShips extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			BSButton button = (BSButton) e.getSource();
-			System.out.println(button.toString());
-			button.setBackground(Color.YELLOW);
+			if(!button.hasBeenClicked())	{
+				button.setBackground(Color.YELLOW);
+				button.clicked();
+				clickedButtons.add(button);
+			}
+			else	{
+				button.setBackground(Color.BLUE);
+				button.clicked();
+				clickedButtons.remove(button);
+			}
 			repaint();
+			System.out.println(clickedButtons);
 		}
 	}
-
 }

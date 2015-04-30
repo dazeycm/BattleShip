@@ -7,6 +7,7 @@ public class BSButton extends JButton{
 	int x;
 	int y;
 	boolean clicked;
+	boolean clickable;
 	
 	private static final long serialVersionUID = 1090104771604915982L;
 
@@ -17,6 +18,7 @@ public class BSButton extends JButton{
 		this.x = x;
 		this.y = y;
 		this.clicked = false;
+		this.clickable = true;
 	}
 	
 	public Pair<Integer, Integer> getXY()	{
@@ -24,7 +26,8 @@ public class BSButton extends JButton{
 	}
 	
 	public void clicked()	{
-		this.clicked = !this.clicked;
+		if(clickable)
+			this.clicked = !this.clicked;
 	}
 	
 	public boolean hasBeenClicked()	{

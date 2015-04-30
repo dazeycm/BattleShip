@@ -34,6 +34,14 @@ public class BSButton extends JButton{
 		return this.clicked;
 	}
 	
+	public void makeUnclickable()	{
+		this.clickable = false;
+	}
+	
+	public boolean isClickable()	{
+		return this.clickable;
+	}
+	
 	public String toString()	{
 		return butNum + " " + x + " " + y;
 	}

@@ -61,6 +61,7 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
+		BSAskShips bsa = new BSAskShips();
 		while(true)	{
 			String message = bsc.readLine();
 			if(message.contains(Protocol.ALBUS))	{

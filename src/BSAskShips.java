@@ -141,6 +141,7 @@ public class BSAskShips extends JPanel {
 						for(BSButton button : clickedButtons)	{
 							button.makeUnclickable();
 						}
+						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.AIRCRAFT_CARRIER + toPointFormat(clickedButtons));
 					}
 				}
@@ -151,6 +152,7 @@ public class BSAskShips extends JPanel {
 						for(BSButton button : clickedButtons)	{
 							button.makeUnclickable();
 						}
+						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.BATTLESHIP + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == submarine)	{
@@ -160,6 +162,7 @@ public class BSAskShips extends JPanel {
 						for(BSButton button : clickedButtons)	{
 							button.makeUnclickable();
 						}
+						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.SUBMARINE + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == cruiser)	{
@@ -169,6 +172,7 @@ public class BSAskShips extends JPanel {
 						for(BSButton button : clickedButtons)	{
 							button.makeUnclickable();
 						}
+						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == patrol)	{
@@ -178,13 +182,9 @@ public class BSAskShips extends JPanel {
 						for(BSButton button : clickedButtons)	{
 							button.makeUnclickable();
 						}
+						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.PATROL_BOAT + toPointFormat(clickedButtons));					}
 				}
-				
-				
-				//send ship message here
-				//client.sendMessage(message);
-				clickedButtons.clear();
 			}
 			else	{
 				errorText.setText("Invalid ship placement!");

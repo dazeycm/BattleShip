@@ -120,7 +120,7 @@ public class BSAskShips extends JPanel {
 			BSButton button = (BSButton) e.getSource();
 			if (button.isClickable()) {
 				if (!button.hasBeenClicked()) {
-					button.setBackground(Color.GRAY);
+					button.setBackground(new Color(221, 221, 221));
 					button.clicked();
 					clickedButtons.add(button);
 				} else {

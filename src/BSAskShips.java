@@ -19,7 +19,6 @@ public class BSAskShips extends JPanel {
 	JButton cruiser = new JButton("Cruiser");
 	JButton patrol = new JButton("Patrol Boat");
 	JLabel errorText = new JLabel();
-	@SuppressWarnings("unused")
 	private BattleShipClient client;
 
 	public BSAskShips(BattleShipClient client) {
@@ -29,6 +28,8 @@ public class BSAskShips extends JPanel {
 		clickedButtons = new ArrayList<BSButton>();
 
 		errorText.setBounds(20, 650, 600, 30);
+		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
+		errorText.setForeground(new Color(221, 221, 221));
 		this.add(errorText);
 
 		initGridButtons();
@@ -79,11 +80,11 @@ public class BSAskShips extends JPanel {
 	public void intitShipButtons() {
 		shipButtonResponder br = new shipButtonResponder();
 
-		carrier.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-		battleship.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-		submarine.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-		cruiser.setFont(new Font("TimesRoman", Font.PLAIN, 12));
-		patrol.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+		carrier.setFont(new Font("Impact", Font.PLAIN, 17));
+		battleship.setFont(new Font("Impact", Font.PLAIN, 17));
+		submarine.setFont(new Font("Impact", Font.PLAIN, 17));
+		cruiser.setFont(new Font("Impact", Font.PLAIN, 17));
+		patrol.setFont(new Font("Impact", Font.PLAIN, 17));
 
 		carrier.setBounds(185, 610, 145, 40);
 		battleship.setBounds(310, 560, 145, 40);

@@ -48,7 +48,6 @@ public class BattleShipClient{
 			System.out.println("Error when client tried to read message");
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	

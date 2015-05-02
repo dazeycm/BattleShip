@@ -8,6 +8,12 @@ public class BSAskShips extends JPanel {
 	private static final long serialVersionUID = 1929426850051553458L;
 	private JFrame frame;
 	private ArrayList<BSButton> clickedButtons;
+	JButton carrier = new JButton("Aircraft Carrier");
+	JButton battleship = new JButton("BattleShip");
+	JButton submarine = new JButton("Submarine");
+	JButton cruiser = new JButton("Cruiser");
+	JButton patrol = new JButton("Patrol Boat");
+	JLabel errorText = new JLabel();
 	@SuppressWarnings("unused")
 	private BattleShipClient client;
 	
@@ -15,6 +21,9 @@ public class BSAskShips extends JPanel {
 		this.client = client;
 		this.setLayout(null);
 		clickedButtons = new ArrayList<BSButton>();
+		
+		errorText.setBounds(20, 650, 600, 30);
+		this.add(errorText);
 		
 		initGridButtons();
 		intitShipButtons();
@@ -64,12 +73,6 @@ public class BSAskShips extends JPanel {
 	
 	public void intitShipButtons()	{
 		shipButtonResponder br = new shipButtonResponder();
-		
-		JButton carrier = new JButton("Aircraft Carrier");
-		JButton battleship = new JButton("BattleShip");
-		JButton submarine = new JButton("Submarine");
-		JButton cruiser = new JButton("Cruiser");
-		JButton patrol = new JButton("Patrol Boat");
 		
 		carrier.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 		battleship.setFont(new Font("TimesRoman", Font.PLAIN, 12));
@@ -130,14 +133,53 @@ public class BSAskShips extends JPanel {
 	public class shipButtonResponder implements ActionListener	{
 
 		public void actionPerformed(ActionEvent e) {
-			if(isValidShip(clickedButtons))	{
-				System.out.println("valid ship placement");
+			if(isValidShip(clickedButtons) && clickedButtons.size() > 1)	{
+				if(e.getSource() == carrier)	{
+					if(clickedButtons.size() != 5)
+						errorText.setText("Expected 5 locations to be selected, but found " + clickedButtons.size());
+					else	{
+						client.sendMessage(Protocol.VOLDY + Protocol.AIRCRAFT_CARRIER + clickedButtons.toString());
+					}
+				}
+				else if (e.getSource() == battleship)	{
+					if(clickedButtons.size() != 4)
+						errorText.setText("Expected 4 locations to be selected, but found " + clickedButtons.size());
+					else	{
+						client.sendMessage();
+					}
+				}
+				else if (e.getSource() == submarine)	{
+					if(clickedButtons.size() != 3)
+						errorText.setText("Expected 3 locations to be selected, but found " + clickedButtons.size());
+					else	{
+						client.sendMessage();
+					}
+				}
+				else if (e.getSource() == cruiser)	{
+					if(clickedButtons.size() != 3)
+						errorText.setText("Expected 3 locations to be selected, but found " + clickedButtons.size());
+					else	{
+						client.sendMessage();
+					}
+				}
+				else if (e.getSource() == patrol)	{
+					if(clickedButtons.size() != 2)
+						errorText.setText("Expected 2 locations to be selected, but found " + clickedButtons.size());
+					else	{
+						client.sendMessage();
+					}
+				}
+				
 				for(BSButton button : clickedButtons)	{
 					button.makeUnclickable();
 				}
+				
 				//send ship message here
 				//client.sendMessage(message);
 				clickedButtons.clear();
+			}
+			else	{
+				errorText.setText("Invalid ship placement!");
 			}
 		
 		}

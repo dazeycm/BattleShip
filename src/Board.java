@@ -1,8 +1,7 @@
 import java.awt.Point;
+
 import java.util.*;
 import java.util.Map.*;
-
-import javafx.util.*;
 
 public class Board {
 	int[][] board = new int[11][11];

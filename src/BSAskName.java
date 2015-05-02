@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,6 +45,7 @@ public class BSAskName extends JPanel {
 		this.add(nameEntry);
 
 		enterName = new JButton("Submit");
+		enterName.setFont(new Font("Impact", Font.PLAIN, 17));
 		enterName.setBackground(new Color(221, 221, 221));
 		enterName.setOpaque(true);
 		enterName.setBorderPainted(false);
@@ -59,6 +61,7 @@ public class BSAskName extends JPanel {
 		this.add(enterName);
 
 		enterNameText = new JLabel("Please enter your name:");
+		enterNameText.setFont(new Font("Impact", Font.PLAIN, 17));
 		enterNameText.setBounds(25, 40, 350, 20);
 		this.add(enterNameText);
 

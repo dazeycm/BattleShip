@@ -1,7 +1,7 @@
 import java.awt.Point;
+
 import java.util.ArrayList;
 
-import javafx.util.Pair;
 
 public class Ship {
 	private int health;

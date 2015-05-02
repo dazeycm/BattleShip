@@ -44,6 +44,9 @@ public class BSAskName extends JPanel {
 		this.add(nameEntry);
 
 		enterName = new JButton("Submit");
+		enterName.setBackground(new Color(221, 221, 221));
+		enterName.setOpaque(true);
+		enterName.setBorderPainted(false);
 		enterName.setBounds(280, 110, 90, 30);
 		enterName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

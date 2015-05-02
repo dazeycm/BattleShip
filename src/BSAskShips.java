@@ -97,6 +97,22 @@ public class BSAskShips extends JPanel {
 		cruiser.addActionListener(br);
 		patrol.addActionListener(br);
 
+		carrier.setBackground(new Color(221, 221, 221));
+		carrier.setOpaque(true);
+		carrier.setBorderPainted(false);
+		battleship.setBackground(new Color(221, 221, 221));
+		battleship.setOpaque(true);
+		battleship.setBorderPainted(false);
+		submarine.setBackground(new Color(221, 221, 221));
+		submarine.setOpaque(true);
+		submarine.setBorderPainted(false);
+		cruiser.setBackground(new Color(221, 221, 221));
+		cruiser.setOpaque(true);
+		cruiser.setBorderPainted(false);
+		patrol.setBackground(new Color(221, 221, 221));
+		patrol.setOpaque(true);
+		patrol.setBorderPainted(false);
+
 		this.add(carrier);
 		this.add(battleship);
 		this.add(submarine);

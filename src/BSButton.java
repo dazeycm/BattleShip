@@ -14,6 +14,8 @@ public class BSButton extends JButton {
 	public BSButton(int butNum, int x, int y) {
 		super();
 		this.setBackground(new Color(50, 200, 200));
+		this.setOpaque(true);
+		this.setBorderPainted(false);
 		this.butNum = butNum;
 		this.x = x;
 		this.y = y;

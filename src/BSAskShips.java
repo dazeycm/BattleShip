@@ -121,10 +121,14 @@ public class BSAskShips extends JPanel {
 			if (button.isClickable()) {
 				if (!button.hasBeenClicked()) {
 					button.setBackground(new Color(221, 221, 221));
+					button.setOpaque(true);
+					button.setBorderPainted(false);
 					button.clicked();
 					clickedButtons.add(button);
 				} else {
 					button.setBackground(new Color(50, 200, 200));
+					button.setOpaque(true);
+					button.setBorderPainted(false);
 					button.clicked();
 					clickedButtons.remove(button);
 				}

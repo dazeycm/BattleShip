@@ -1,5 +1,8 @@
 import java.awt.Color;
+import java.awt.Point;
+
 import javafx.util.Pair;
+
 import javax.swing.JButton;
 
 public class BSButton extends JButton{
@@ -21,8 +24,8 @@ public class BSButton extends JButton{
 		this.clickable = true;
 	}
 	
-	public Pair<Integer, Integer> getXY()	{
-		return new Pair<Integer, Integer>(this.x, this.y);
+	public String getXY()	{
+		return "(" + x + "," + y + ")";
 	}
 	
 	public void clicked()	{

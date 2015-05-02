@@ -138,41 +138,49 @@ public class BSAskShips extends JPanel {
 					if(clickedButtons.size() != 5)
 						errorText.setText("Expected 5 locations to be selected, but found " + clickedButtons.size());
 					else	{
-						client.sendMessage(Protocol.VOLDY + Protocol.AIRCRAFT_CARRIER + clickedButtons.toString());
+						for(BSButton button : clickedButtons)	{
+							button.makeUnclickable();
+						}
+						client.sendMessage(Protocol.HOGWARTS + Protocol.AIRCRAFT_CARRIER + toPointFormat(clickedButtons));
 					}
 				}
 				else if (e.getSource() == battleship)	{
 					if(clickedButtons.size() != 4)
 						errorText.setText("Expected 4 locations to be selected, but found " + clickedButtons.size());
 					else	{
-						client.sendMessage();
-					}
+						for(BSButton button : clickedButtons)	{
+							button.makeUnclickable();
+						}
+						client.sendMessage(Protocol.HOGWARTS + Protocol.BATTLESHIP + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == submarine)	{
 					if(clickedButtons.size() != 3)
 						errorText.setText("Expected 3 locations to be selected, but found " + clickedButtons.size());
 					else	{
-						client.sendMessage();
-					}
+						for(BSButton button : clickedButtons)	{
+							button.makeUnclickable();
+						}
+						client.sendMessage(Protocol.HOGWARTS + Protocol.SUBMARINE + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == cruiser)	{
 					if(clickedButtons.size() != 3)
 						errorText.setText("Expected 3 locations to be selected, but found " + clickedButtons.size());
 					else	{
-						client.sendMessage();
-					}
+						for(BSButton button : clickedButtons)	{
+							button.makeUnclickable();
+						}
+						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER + toPointFormat(clickedButtons));					}
 				}
 				else if (e.getSource() == patrol)	{
 					if(clickedButtons.size() != 2)
 						errorText.setText("Expected 2 locations to be selected, but found " + clickedButtons.size());
 					else	{
-						client.sendMessage();
-					}
+						for(BSButton button : clickedButtons)	{
+							button.makeUnclickable();
+						}
+						client.sendMessage(Protocol.HOGWARTS + Protocol.PATROL_BOAT + toPointFormat(clickedButtons));					}
 				}
 				
-				for(BSButton button : clickedButtons)	{
-					button.makeUnclickable();
-				}
 				
 				//send ship message here
 				//client.sendMessage(message);
@@ -181,7 +189,6 @@ public class BSAskShips extends JPanel {
 			else	{
 				errorText.setText("Invalid ship placement!");
 			}
-		
 		}
 		
 		public boolean isValidShip(ArrayList<BSButton> buttons){
@@ -212,6 +219,15 @@ public class BSAskShips extends JPanel {
 				}
 			}
 			return allNextTo && (vertical || horizontal);
+		}
+		
+		public String toPointFormat(ArrayList<BSButton> buttons)	{
+			StringBuilder sb = new StringBuilder();
+			for(BSButton b : buttons)	{
+				sb.append(b.getXY() + " ");
+			}
+			System.out.println(sb.toString());
+			return sb.toString();
 		}
 	}
 }

@@ -5,7 +5,7 @@
  * @professor Dr. Kiper
  * @date 05/07/15
  * @description ForCraigsSanity is a class for handling the clients, server, and
- *              threads
+ *              threads i.e. launches a server and two clients
  */
 public class ForCraigsSanity {
 
@@ -21,6 +21,7 @@ public class ForCraigsSanity {
 		}
 	}
 
+	// runs a server
 	public static class RunServer implements Runnable {
 		public void run() {
 			String[] args = new String[0];
@@ -28,6 +29,7 @@ public class ForCraigsSanity {
 		}
 	}
 
+	// runs a client
 	public static class RunClient implements Runnable {
 		public void run() {
 			String[] args = new String[0];

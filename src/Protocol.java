@@ -97,4 +97,8 @@ public class Protocol {
 	 * This is the "we're starting the game message"
 	 */
 	public static final String POTTER = "HARRY_POTTER ";
+	/**
+	 * This is a status update message after sending a shot
+	 */
+	public static final String RON = "RON_WEASLEY ";
 }

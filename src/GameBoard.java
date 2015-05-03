@@ -1,47 +1,74 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-
-public class GameBoard extends JPanel{
+/**
+ * 
+ * @author Craig Dazey and Nora Husani
+ * @course CSE 211
+ * @professor Dr. Kiper
+ * @date 05/07/15
+ * @description GameBoard is a GUI interface for creating the GameBoard for
+ *              battleship
+ */
+public class GameBoard extends JPanel {
 	private static final long serialVersionUID = 1002898930501111631L;
 	private JFrame frame;
 	private ArrayList<BSButton> myBoard;
 	private ArrayList<BSButton> myShots;
 	private BattleShipClient client;
 	private JLabel errorText;
-	
-	public GameBoard (BattleShipClient client, String locations)	{
+
+	/**
+	 * Preconditions: client and locations are not NULL Postconditions: creates
+	 * a gameBoard object for the battleship game Side Effects: sets
+	 * this.client, calls setLayout, setBackground
+	 * 
+	 * @param client
+	 *            a BattleShipClient object that represents the player
+	 * @param locations
+	 *            a String that represents the locations
+	 */
+	public GameBoard(BattleShipClient client, String locations) {
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
-		
+
 		errorText = new JLabel();
 		errorText.setBounds(10, 600, 400, 30);
 		this.add(errorText);
-		
+
 		myBoard = new ArrayList<BSButton>();
 		myShots = new ArrayList<BSButton>();
-		
+
 		initMyGridButtons();
 		initMyShotButtons();
-		
+
 		List<String> locs = Arrays.asList(locations.split("&"));
 		ArrayList<Integer> intLocs = new ArrayList<Integer>();
-		for(String s : locs)
+		for (String s : locs)
 			intLocs.add(Integer.parseInt(s));
-		
-		for(BSButton button : myBoard)	{
-			if(intLocs.contains(button.butNum))
+
+		for (BSButton button : myBoard) {
+			if (intLocs.contains(button.butNum))
 				button.setBackground(new Color(221, 221, 221));
 		}
-		
+
 		initFrame();
 	}
-	
+
+	/**
+	 * Stores information about the buttons on the battleship grid
+	 * Preconditions: none Postconditions: modifies the grid buttons Side
+	 * Effects: creates a new BSButton object
+	 */
 	public void initMyGridButtons() {
 		// Button information
 		int id = 0;
@@ -79,8 +106,12 @@ public class GameBoard extends JPanel{
 			id++;
 		}
 	}
-	
-	public void initMyShotButtons()	{
+
+	/**
+	 * Preconditions: none Postconditions: modifies the buttons shot at Side
+	 * Effects: creates a new gridButtonResponder object
+	 */
+	public void initMyShotButtons() {
 		// Button information
 		int id = 0;
 		int x = 0;
@@ -111,7 +142,7 @@ public class GameBoard extends JPanel{
 				dy = starty;
 				y = 0;
 			}
-			
+
 			BSButton button = new BSButton(id, x, y);
 			button.setBounds(dx, dy, width, height);
 			button.addActionListener(br);
@@ -120,7 +151,11 @@ public class GameBoard extends JPanel{
 			id++;
 		}
 	}
-	
+
+	/**
+	 * Preconditions: none Postconditions: creates a game frame for the player
+	 * Side Effects: creates a new JFrame object and modifies it
+	 */
 	void initFrame() {
 		frame = new JFrame("Best of luck! " + client.name);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,10 +165,18 @@ public class GameBoard extends JPanel{
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-	
-	public void hitShip(int butNum)	{
-		for(BSButton button : myBoard){
-			if(button.butNum == butNum)	{
+
+	/**
+	 * Preconditions: called when a ship has been hit by the enemy, butNum is
+	 * not NULL Postconditions: changes the color of the button to match being
+	 * hit Side Effects: calls setBackground, setOpaque, etc.
+	 * 
+	 * @param butNum
+	 *            an int that represents the button on the game grid
+	 */
+	public void hitShip(int butNum) {
+		for (BSButton button : myBoard) {
+			if (button.butNum == butNum) {
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
@@ -141,10 +184,18 @@ public class GameBoard extends JPanel{
 			}
 		}
 	}
-	
-	public void missedShip(int butNum)	{
-		for(BSButton button : myBoard){
-			if(button.butNum == butNum)	{
+
+	/**
+	 * Preconditions: called when a ship has been missed by the enemy, butNum is
+	 * not NULL Postconditions: changes the color of the button to match being
+	 * missed Side Effects: calls setBackground, setOpaque, etc.
+	 * 
+	 * @param butNum
+	 *            an int that represents the button on the game grid
+	 */
+	public void missedShip(int butNum) {
+		for (BSButton button : myBoard) {
+			if (button.butNum == butNum) {
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
@@ -152,10 +203,18 @@ public class GameBoard extends JPanel{
 			}
 		}
 	}
-	
-	public void iHitShip(int butNum)	{
-		for(BSButton button : myShots){
-			if(button.butNum == butNum)	{
+
+	/**
+	 * Preconditions: called when a player hits a ship, butNum is not NULL
+	 * Postconditions: changes the color of the button to match being hit Side
+	 * Effects: calls setBackground, setOpaque, etc.
+	 * 
+	 * @param butNum
+	 *            an int that represents the button on the game grid
+	 */
+	public void iHitShip(int butNum) {
+		for (BSButton button : myShots) {
+			if (button.butNum == butNum) {
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
@@ -163,10 +222,18 @@ public class GameBoard extends JPanel{
 			}
 		}
 	}
-	
-	public void iMissedShip(int butNum)	{
-		for(BSButton button : myShots){
-			if(button.butNum == butNum)	{
+
+	/**
+	 * Preconditions: called when a player misses a ship, butNum is not NULL
+	 * Postconditions: changes the color of the button to match being missed
+	 * Side Effects: calls setBackground, setOpaque, etc.
+	 * 
+	 * @param butNum
+	 *            an int that represents the button on the game grid
+	 */
+	public void iMissedShip(int butNum) {
+		for (BSButton button : myShots) {
+			if (button.butNum == butNum) {
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
@@ -174,13 +241,24 @@ public class GameBoard extends JPanel{
 			}
 		}
 	}
-	
-	public void setErrorText(String message)	{
+
+	// for formatting errors
+	public void setErrorText(String message) {
 		this.errorText.setText(message);
 	}
-	
+
+	/**
+	 * 
+	 * Implement ActionListener to allow buttons on grid to do things
+	 *
+	 */
 	public class gridButtonResponder implements ActionListener {
 
+		/**
+		 * Preconditions: e is not NULL Postconditions: button color is changed
+		 * according to hit/miss Side Effects: calls setBackground, setOpaque,
+		 * etc.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			BSButton button = (BSButton) e.getSource();
 			if (button.isClickable()) {

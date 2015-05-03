@@ -80,7 +80,7 @@ public class BattleShipClient{
 				if(message.contains(Protocol.AVADAKEDAVRA))	{
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
-					gb.setErrorText("You sunk your oppenent's " + parts.get(4));
+					gb.setErrorText("Your opponent sunk your " + parts.get(4));
 				}
 				else if(message.contains(Protocol.CRUCIO))	{
 					location = Integer.parseInt(parts.get(2));
@@ -96,8 +96,8 @@ public class BattleShipClient{
 				List<String> parts = Arrays.asList(message.split(" "));
 				if(message.contains(Protocol.AVADAKEDAVRA))	{
 					location = Integer.parseInt(parts.get(2));
-					gb.hitShip(location);
-					gb.setErrorText("Your opponent sunk your " + parts.get(4));
+					gb.iHitShip(location);
+					gb.setErrorText("You sunk your opponent's " + parts.get(4));
 				}
 				else if(message.contains(Protocol.CRUCIO))	{
 					location = Integer.parseInt(parts.get(2));

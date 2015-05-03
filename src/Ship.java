@@ -14,7 +14,7 @@ public class Ship {
 	}
 	
 	public void shipHit()	{
-		this.health =- 1;
+		this.health -= 1;
 	}
 	
 	public boolean isSunk()	{

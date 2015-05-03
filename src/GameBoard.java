@@ -138,6 +138,7 @@ public class GameBoard extends JPanel{
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				repaint();
 			}
 		}
 	}
@@ -148,6 +149,7 @@ public class GameBoard extends JPanel{
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				repaint();
 			}
 		}
 	}
@@ -158,6 +160,7 @@ public class GameBoard extends JPanel{
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				repaint();
 			}
 		}
 	}
@@ -168,6 +171,7 @@ public class GameBoard extends JPanel{
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				repaint();
 			}
 		}
 	}

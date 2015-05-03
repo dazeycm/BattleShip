@@ -168,10 +168,11 @@ public class BSAskShips extends JPanel {
 						for (BSButton button : clickedButtons) {
 							button.makeUnclickable();
 						}
-						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.AIRCRAFT_CARRIER
 								+ toPointFormat(clickedButtons));
+						clickedButtons.clear();
+
 					}
 				} else if (e.getSource() == battleship) {
 					if (clickedButtons.size() != 4)
@@ -182,10 +183,10 @@ public class BSAskShips extends JPanel {
 						for (BSButton button : clickedButtons) {
 							button.makeUnclickable();
 						}
-						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.BATTLESHIP
 								+ toPointFormat(clickedButtons));
+						clickedButtons.clear();
 					}
 				} else if (e.getSource() == submarine) {
 					if (clickedButtons.size() != 3)
@@ -196,10 +197,10 @@ public class BSAskShips extends JPanel {
 						for (BSButton button : clickedButtons) {
 							button.makeUnclickable();
 						}
-						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.SUBMARINE
 								+ toPointFormat(clickedButtons));
+						clickedButtons.clear();
 					}
 				} else if (e.getSource() == cruiser) {
 					if (clickedButtons.size() != 3)
@@ -210,9 +211,9 @@ public class BSAskShips extends JPanel {
 						for (BSButton button : clickedButtons) {
 							button.makeUnclickable();
 						}
-						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER
 								+ toPointFormat(clickedButtons));
+						clickedButtons.clear();
 					}
 				} else if (e.getSource() == patrol) {
 					if (clickedButtons.size() != 2)
@@ -223,10 +224,10 @@ public class BSAskShips extends JPanel {
 						for (BSButton button : clickedButtons) {
 							button.makeUnclickable();
 						}
-						clickedButtons.clear();
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.PATROL_BOAT
 								+ toPointFormat(clickedButtons));
+						clickedButtons.clear();
 					}
 				}
 			} else {
@@ -273,7 +274,6 @@ public class BSAskShips extends JPanel {
 			for (BSButton b : buttons) {
 				sb.append(b.getXY() + " ");
 			}
-			System.out.println(sb.toString());
 			return sb.toString();
 		}
 	}

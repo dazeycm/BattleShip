@@ -9,6 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * @author Craig Dazey and Nora Husani
+ * @course CSE 211
+ * @professor Dr. Kiper
+ * @date 05/07/15 BSAskShips is a GUI interface that prompts each player to
+ *       place their ships on the battle ship board
+ *
+ */
 public class BSAskShips extends JPanel {
 	private static final long serialVersionUID = 1929426850051553458L;
 	private JFrame frame;
@@ -22,6 +31,15 @@ public class BSAskShips extends JPanel {
 	int shipPlaceCount;
 	private BattleShipClient client;
 
+	/**
+	 * 
+	 * Preconditions: client is not NULL Postconditions: new BSAskName GUI is
+	 * created Side Effects: this.client is set to client and GUI is set up
+	 * 
+	 * @param client
+	 *            a BattleShipClient object that represents one of the players
+	 *            in the game
+	 */
 	public BSAskShips(BattleShipClient client) {
 		this.client = client;
 		this.setLayout(null);
@@ -38,6 +56,10 @@ public class BSAskShips extends JPanel {
 		initFrame();
 	}
 
+	/**
+	 * Preconditions: none Postconditions: creates new button responder and
+	 * buttons for board Side Effects: buttons added to this
+	 */
 	public void initGridButtons() {
 		// Button information
 		int id = 0;
@@ -78,6 +100,10 @@ public class BSAskShips extends JPanel {
 		}
 	}
 
+	/**
+	 * Preconditions: none Postconditions: creates and places the ship buttons
+	 * Side Effects: modifies font,bounds,and color to buttons
+	 */
 	public void intitShipButtons() {
 		shipButtonResponder br = new shipButtonResponder();
 
@@ -122,6 +148,10 @@ public class BSAskShips extends JPanel {
 		this.add(patrol);
 	}
 
+	/**
+	 * Preconditions: none Postconditions: creates a frame for the battleship
+	 * board Side Effects: creates a new JFrame object
+	 */
 	void initFrame() {
 		frame = new JFrame("Please place your ships!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,14 +161,27 @@ public class BSAskShips extends JPanel {
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-	
-	void kill()	{
+
+	/**
+	 * Preconditions: none Postconditions: makes the frame not visible Side
+	 * Effects: calls setVisible and dispose
+	 */
+	void kill() {
 		frame.setVisible(false);
 		frame.dispose();
 	}
 
+	/**
+	 * 
+	 * Implement ActionListener to allow the buttons on the grid to do things
+	 *
+	 */
 	public class gridButtonResponder implements ActionListener {
 
+		/**
+		 * Preconditions: e is not NULL Postconditions: creates a new button for
+		 * the button clicked Side Effects: getSource is called
+		 */
 		public void actionPerformed(ActionEvent e) {
 			BSButton button = (BSButton) e.getSource();
 			if (button.isClickable()) {
@@ -160,8 +203,18 @@ public class BSAskShips extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * Implement ActionListener to allow the ship buttons to do things
+	 *
+	 */
 	public class shipButtonResponder implements ActionListener {
 
+		/**
+		 * Preconditions: e is not NULL Postconditions: Ship placement is either
+		 * considered valid or invalid Side Effects: getSource is called, button
+		 * is made unclickable and cleared
+		 */
 		public void actionPerformed(ActionEvent e) {
 			if (isValidShip(clickedButtons) && clickedButtons.size() > 1) {
 				if (e.getSource() == carrier) {
@@ -262,12 +315,24 @@ public class BSAskShips extends JPanel {
 			} else {
 				errorText.setText("Invalid ship placement!");
 			}
-			
-			if(shipPlaceCount == 5)	{
-				errorText.setText("Please wait for your opponent to place their ships");
+
+			if (shipPlaceCount == 5) {
+				errorText
+						.setText("Please wait for your opponent to place their ships");
 			}
 		}
 
+		/**
+		 * Preconditions: buttons is not NULL Postconditions: returns true if
+		 * ship placement is valid, false otherwise Side Effects: sets booleans
+		 * to true or false
+		 * 
+		 * @param buttons
+		 *            an ArrayList of BSButtons that represent the coordinates
+		 *            on the grid
+		 * @return a boolean representing if the placement of the ship is valid
+		 *         or not
+		 */
 		public boolean isValidShip(ArrayList<BSButton> buttons) {
 			boolean vertical = true;
 			boolean horizontal = true;
@@ -302,6 +367,7 @@ public class BSAskShips extends JPanel {
 			return allNextTo && (vertical || horizontal);
 		}
 
+		// For formatting
 		public String toNumFormat(ArrayList<BSButton> buttons) {
 			StringBuilder sb = new StringBuilder();
 			for (BSButton b : buttons) {

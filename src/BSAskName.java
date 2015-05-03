@@ -30,11 +30,12 @@ public class BSAskName extends JPanel {
 
 	/**
 	 * 
+	 * Preconditions: client is not NULL Postconditions: new BSAskName GUI is
+	 * created Side Effects: this.client is set to client and GUI is set up
+	 * 
 	 * @param client
 	 *            a BattleShipClient object that represents one of the players
-	 *            in the game Preconditions: client is not NULL Postconditions:
-	 *            new BSAskName GUI is created Side Effects: this.client is set
-	 *            to client and GUI is set up
+	 *            in the game
 	 */
 	public BSAskName(final BattleShipClient client) {
 		this.client = client;
@@ -68,6 +69,10 @@ public class BSAskName extends JPanel {
 		initFrame();
 	}
 
+	/**
+	 * Preconditions: None Postconditions: Creates welcome to battleship frame
+	 * Side Effects: Creates a new JFrame object
+	 */
 	void initFrame() {
 		frame = new JFrame("Welcome to BattleShip!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

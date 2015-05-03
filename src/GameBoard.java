@@ -123,7 +123,7 @@ public class GameBoard extends JPanel{
 	}
 	
 	void initFrame() {
-		frame = new JFrame("Best of luck!");
+		frame = new JFrame("Best of luck! " + client.name);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 1100, 700);

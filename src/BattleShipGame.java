@@ -157,7 +157,6 @@ public class BattleShipGame {
 			else	{
 				player2Board.addShip(shipName, intShipLocs);
 			}
-			System.out.println("made " + shipName);
 			break;
 		case 3:
 			if(player.equals("player1"))	{
@@ -166,7 +165,6 @@ public class BattleShipGame {
 			else	{
 				player2Board.addShip(shipName, intShipLocs);
 			}
-			System.out.println("made " + shipName);
 			break;
 		case 4:
 			if(player.equals("player1"))	{
@@ -175,7 +173,6 @@ public class BattleShipGame {
 			else	{
 				player2Board.addShip(shipName, intShipLocs);
 			}
-			System.out.println("made " + shipName);
 			break;
 		case 5:
 			if(player.equals("player1"))	{
@@ -184,7 +181,6 @@ public class BattleShipGame {
 			else	{
 				player2Board.addShip(shipName, intShipLocs);
 			}
-			System.out.println("made " + shipName);
 			break;	
 		}
 	}

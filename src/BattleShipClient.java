@@ -9,6 +9,7 @@ public class BattleShipClient{
 	public BufferedReader input;
 	public PrintWriter output;
 	public Scanner kb;
+	public String name;
 	
 	public BattleShipClient() {
 		InetAddress address;
@@ -58,12 +59,14 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
+		BSAskName askName = null;
 		GameBoard gb = null;
 		BSAskShips getShips = null;
 		while(true)	{
 			String message = bsc.readLine();
 			if(message.contains(Protocol.ALBUS))	{
-				new BSAskName(bsc);
+				askName = new BSAskName(bsc);
+				bsc.name = askName.name;
 			}
 			else if(message.contains(Protocol.VOLDY))	{
 				getShips = new BSAskShips(bsc);

@@ -53,9 +53,9 @@ public class BSAskName extends JPanel {
 		enterName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				name = nameEntry.getText();
+				client.sendMessage(Protocol.SNAPE + name);
 				frame.setVisible(false);
 				frame.dispose();
-				client.sendMessage(Protocol.SNAPE + name);
 			}
 		});
 		this.add(enterName);

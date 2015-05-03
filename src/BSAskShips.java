@@ -156,7 +156,6 @@ public class BSAskShips extends JPanel {
 					clickedButtons.remove(button);
 				}
 				repaint();
-				System.out.println(clickedButtons);
 			}
 		}
 	}

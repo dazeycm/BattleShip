@@ -4,8 +4,11 @@ import java.util.*;
 import java.util.Map.*;
 
 public class Board {
-	int[][] board = new int[11][11];
-	HashMap<String, Ship> ships = new HashMap<String, Ship>();
+	HashMap<String, Ship> ships; 
+	
+	public Board()	{
+		ships = new HashMap<String, Ship>();
+	}
 	
 	public void addShip(String type, ArrayList<Point> locs)	{
 		Ship ship = new Ship(locs.size(), locs);

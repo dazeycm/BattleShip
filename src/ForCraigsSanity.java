@@ -26,5 +26,4 @@ public class ForCraigsSanity {
 			BattleShipClient.main(args);
 		}
 	}
-
 }

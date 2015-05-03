@@ -68,11 +68,46 @@ public class BattleShipGame {
 			if(player1GoesFirst){
 				String loc = player1.receiveMessage();
 				int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ")));
-				for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
-						System.out.println("we made it boys");
-				}
 				
-				player2.sendMessage(loc.substring(loc.indexOf(" ")));
+				for(Entry<String, Ship> entry : player2Board.ships.entrySet())	{
+					if(entry.getValue().locs.contains(butNum))	{
+						System.out.println("It's a hit!");
+						entry.getValue().shipHit();
+						if(entry.getValue().isSunk())	{
+							System.out.println("Ship sunk!");
+							player2.sendMessage(Protocol.AUROR + Protocol.AVADAKEDAVRA);
+						}
+						else	{
+							player2.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum);
+						}
+					}
+					else	{
+						System.out.println("It's a miss!");
+						player2.sendMessage(Protocol.AUROR + Protocol.STUPEFY + butNum);
+					}
+				}
+			}
+			else	{
+				String loc = player2.receiveMessage();
+				int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ")));
+				
+				for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
+					if(entry.getValue().locs.contains(butNum))	{
+						System.out.println("It's a hit!");
+						entry.getValue().shipHit();
+						if(entry.getValue().isSunk())	{
+							System.out.println("Ship sunk!");
+							player1.sendMessage(Protocol.AUROR + Protocol.AVADAKEDAVRA);
+						}
+						else	{
+							player1.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum);
+						}
+					}
+					else	{
+						System.out.println("It's a miss!");
+						player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY + butNum);
+					}
+				}
 			}
 		}
 	}

@@ -131,6 +131,11 @@ public class BSAskShips extends JPanel {
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
+	
+	void kill()	{
+		frame.setVisible(false);
+		frame.dispose();
+	}
 
 	public class gridButtonResponder implements ActionListener {
 

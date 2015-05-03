@@ -58,13 +58,17 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
+		BSAskShips getShips = null;
 		while(true)	{
 			String message = bsc.readLine();
 			if(message.contains(Protocol.ALBUS))	{
 				new BSAskName(bsc);
 			}
 			else if(message.contains(Protocol.VOLDY))	{
-				new BSAskShips(bsc);
+				getShips = new BSAskShips(bsc);
+			}
+			else if(message.contains(Protocol.POTTER))	{
+				getShips.kill();
 			}
 		}
 	}

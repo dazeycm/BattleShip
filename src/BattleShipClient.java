@@ -1,24 +1,44 @@
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
-public class BattleShipClient{
+/**
+ * 
+ * @author Craig Dazey and Nora Husani
+ * @course CSE 211
+ * @professor Dr. Kiper
+ * @date 05/07/15
+ * @description BattleShipClient is a class to handle all of the client side
+ *              code of battleships's networking components
+ */
+public class BattleShipClient {
 	final int PORT = 1993;
-	
+
 	private Socket socket;
 	public BufferedReader input;
 	public PrintWriter output;
 	public Scanner kb;
 	public String name;
-	
+
+	/**
+	 * Preconditions: none Postconditions: creates a BattleShipClient Side
+	 * Effects: Sets the address and host name, throws errors when necessary
+	 */
 	public BattleShipClient() {
 		InetAddress address;
 		String hostName = null;
-		
+
 		try {
 			address = InetAddress.getLocalHost();
 			hostName = address.getHostName();
-			
+
 			try {
 				this.socket = new Socket(hostName, PORT);
 			} catch (UnknownHostException e) {
@@ -26,23 +46,31 @@ public class BattleShipClient{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 		} catch (UnknownHostException e) {
 			System.out.println("Error getting localhost");
 			e.printStackTrace();
 		}
-		
+
 		try {
-			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			input = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
 			output = new PrintWriter(socket.getOutputStream());
 			kb = new Scanner(System.in);
 		} catch (IOException e) {
-			System.out.println("Error in retrieving input and output streams for threads");
+			System.out
+					.println("Error in retrieving input and output streams for threads");
 			e.printStackTrace();
 		}
 	}
-	
-	public String readLine()	{
+
+	/**
+	 * Preconditions: input is not NULL Postconditions: returns a string
+	 * representation of the next line
+	 * 
+	 * @return a String representation of the next line
+	 */
+	public String readLine() {
 		try {
 			return this.input.readLine();
 		} catch (IOException e) {
@@ -51,62 +79,66 @@ public class BattleShipClient{
 		}
 		return null;
 	}
-	
-	public void sendMessage(String message)	{
+
+	/**
+	 * Preconditions: message is not NULL Postconditions: send message to server
+	 * Side Effects: calls println and flush
+	 * 
+	 * @param message
+	 *            a String that represents the message based on the grammar
+	 */
+	public void sendMessage(String message) {
 		output.println(message);
 		output.flush();
 	}
-	
-	public static void main(String[] args)	{
+
+	/**
+	 * Preconditions: none Postconditions: calls methods based on the message
+	 * type according to the grammar Side Effects: creates new BSAskName,
+	 * BSAskShips, and GameBoard objects
+	 */
+	public static void main(String[] args) {
 		BattleShipClient bsc = new BattleShipClient();
 		BSAskName askName = null;
 		GameBoard gb = null;
 		BSAskShips getShips = null;
-		while(true)	{
+		while (true) {
 			String message = bsc.readLine();
-			if(message.contains(Protocol.ALBUS))	{
+			if (message.contains(Protocol.ALBUS)) {
 				askName = new BSAskName(bsc);
 				bsc.name = askName.name;
-			}
-			else if(message.contains(Protocol.VOLDY))	{
+			} else if (message.contains(Protocol.VOLDY)) {
 				getShips = new BSAskShips(bsc);
-			}
-			else if(message.contains(Protocol.POTTER))	{
+			} else if (message.contains(Protocol.POTTER)) {
 				getShips.kill();
 				List<String> parts = Arrays.asList(message.split(" "));
 				String locations = parts.get(1);
 				gb = new GameBoard(bsc, locations);
-			}
-			else if(message.contains(Protocol.AUROR))	{
+			} else if (message.contains(Protocol.AUROR)) {
 				int location;
 				List<String> parts = Arrays.asList(message.split(" "));
-				if(message.contains(Protocol.AVADAKEDAVRA))	{
+				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
 					gb.setErrorText("Your opponent sunk your " + parts.get(4));
-				}
-				else if(message.contains(Protocol.CRUCIO))	{
+				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
-				}
-				else if (message.contains(Protocol.STUPEFY))	{
+				} else if (message.contains(Protocol.STUPEFY)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.missedShip(location);
 				}
-			}
-			else if(message.contains(Protocol.RON))	{
+			} else if (message.contains(Protocol.RON)) {
 				int location;
 				List<String> parts = Arrays.asList(message.split(" "));
-				if(message.contains(Protocol.AVADAKEDAVRA))	{
+				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
 					gb.setErrorText("You sunk your opponent's " + parts.get(4));
-				}
-				else if(message.contains(Protocol.CRUCIO))	{
+				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
-				}
-				else if (message.contains(Protocol.STUPEFY))	{
+				} else if (message.contains(Protocol.STUPEFY)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iMissedShip(location);
 				}

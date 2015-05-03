@@ -76,41 +76,47 @@ public class BattleShipGame {
 							System.out.println("Ship sunk!");
 							player2.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
+							break;
 						}
 						else	{
 							player2.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum);
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum);
+							break;
 						}
 					}
 					else	{
 						System.out.println("It's a miss!");
 						player2.sendMessage(Protocol.AUROR + Protocol.STUPEFY + butNum);
 						player1.sendMessage(Protocol.RON + Protocol.STUPEFY + butNum);
+						break;
 					}
 				}
-			}
-			
-			String loc = player2.receiveMessage();
-			int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
-			
-			for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
-				if(entry.getValue().locs.contains(butNum))	{
-					System.out.println("It's a hit!");
-					entry.getValue().shipHit();
-					if(entry.getValue().isSunk())	{
-						System.out.println("Ship sunk!");
-						player1.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
-						player2.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
+				
+				loc = player2.receiveMessage();
+				butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
+				
+				for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
+					if(entry.getValue().locs.contains(butNum))	{
+						System.out.println("It's a hit!");
+						entry.getValue().shipHit();
+						if(entry.getValue().isSunk())	{
+							System.out.println("Ship sunk!");
+							player1.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
+							player2.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum + " " + Protocol.AVADAKEDAVRA + entry.getKey());
+							break;
+						}
+						else	{
+							player1.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum);
+							player2.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum);
+							break;
+						}
 					}
 					else	{
-						player1.sendMessage(Protocol.AUROR + Protocol.CRUCIO + butNum);
-						player2.sendMessage(Protocol.RON + Protocol.CRUCIO + butNum);
+						System.out.println("It's a miss!");
+						player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY + butNum);
+						player2.sendMessage(Protocol.RON + Protocol.STUPEFY + butNum);
+						break;
 					}
-				}
-				else	{
-					System.out.println("It's a miss!");
-					player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY + butNum);
-					player2.sendMessage(Protocol.RON + Protocol.STUPEFY + butNum);
 				}
 			}
 		}

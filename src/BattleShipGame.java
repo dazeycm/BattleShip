@@ -14,6 +14,8 @@ public class BattleShipGame {
 	public Board player1Board;
 	public Board player2Board;
 	
+	public boolean gameOver = false;
+	
 	public BattleShipGame(ServerThread player1, ServerThread player2) {
 		this.player1 = player1;
 		this.player2 = player2;
@@ -61,84 +63,89 @@ public class BattleShipGame {
 		
 		player1.sendMessage(Protocol.POTTER + getShipButtonLocs("player1"));
 		player2.sendMessage(Protocol.POTTER + getShipButtonLocs("player2"));
+		
+		while(!gameOver)	{
+			if(player1GoesFirst){
+				String loc = player1.receiveMessage();
+				int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ")));
+				for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
+						System.out.println("we made it boys");
+				}
+				
+				player2.sendMessage(loc.substring(loc.indexOf(" ")));
+			}
+		}
 	}
 	
 	public String getShipButtonLocs(String player)	{
-		ArrayList<Point> points = new ArrayList<Point>();
+		ArrayList<Integer> locs = new ArrayList<Integer>();
 		if(player.equals("player1"))	{
 			for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
-				for(Point p : entry.getValue().locs)
-					points.add(p);
+				for(Integer p : entry.getValue().locs)
+					locs.add(p);
 			}
 		} else	{
 			for(Entry<String, Ship> entry : player2Board.ships.entrySet())	{
-				for(Point p : entry.getValue().locs)
-					points.add(p);
+				for(Integer p : entry.getValue().locs)
+					locs.add(p);
 			}
 		}
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for(Point p : points)	{
-			sb.append((int)p.getX() + "," + (int)p.getY() + "&");
+		for(Integer p : locs)	{
+			sb.append(p + "&");
 		}
 		
 		return sb.toString();
 	}
 	
 	public void parseShip(String ships, String player)	{
-		List<String> locs = Arrays.asList(ships.split(" "));
-		String shipName = locs.get(1);
-		locs = locs.subList(2, locs.size());
-		ArrayList<Point> shipLocs = new ArrayList<Point>();
-		
-		for(String point : locs)	{
-			List<String> parts = Arrays.asList(point.split(","));
-			Point p =  new Point(Integer.parseInt(parts.get(0).substring(1)), Integer.parseInt(parts.get(1).substring(0, 1)));
-			shipLocs.add(p);
-		}
+		List<String> parts = Arrays.asList(ships.split(" "));
+		String shipName = parts.get(1);
+		String locations = parts.get(2);
+		List<String> shipLocs = Arrays.asList(locations.split(","));
+		List<Integer> intShipLocs = new ArrayList<Integer>();
+		for(String s : shipLocs)
+			intShipLocs.add(Integer.parseInt(s));
 				
-		switch (locs.size())	{
+		switch (intShipLocs.size())	{
 		case 2:
 			if(player.equals("player1"))	{
-				player1Board.addShip(shipName, shipLocs);
+				player1Board.addShip(shipName, intShipLocs);
 			} 
 			else	{
-				player2Board.addShip(shipName, shipLocs);
+				player2Board.addShip(shipName, intShipLocs);
 			}
 			System.out.println("made " + shipName);
 			break;
 		case 3:
 			if(player.equals("player1"))	{
-				player1Board.addShip(shipName, shipLocs);
+				player1Board.addShip(shipName, intShipLocs);
 			} 
 			else	{
-				player2Board.addShip(shipName, shipLocs);
+				player2Board.addShip(shipName, intShipLocs);
 			}
 			System.out.println("made " + shipName);
 			break;
 		case 4:
 			if(player.equals("player1"))	{
-				player1Board.addShip(shipName, shipLocs);
+				player1Board.addShip(shipName, intShipLocs);
 			} 
 			else	{
-				player2Board.addShip(shipName, shipLocs);
+				player2Board.addShip(shipName, intShipLocs);
 			}
 			System.out.println("made " + shipName);
 			break;
 		case 5:
 			if(player.equals("player1"))	{
-				player1Board.addShip(shipName, shipLocs);
+				player1Board.addShip(shipName, intShipLocs);
 			} 
 			else	{
-				player2Board.addShip(shipName, shipLocs);
+				player2Board.addShip(shipName, intShipLocs);
 			}
 			System.out.println("made " + shipName);
 			break;	
 		}
-	}
-
-	public static void main(String[] args) {
-		
 	}
 }

@@ -1,5 +1,4 @@
 import java.awt.Point;
-
 import java.util.*;
 import java.util.Map.*;
 
@@ -10,8 +9,8 @@ public class Board {
 		ships = new HashMap<String, Ship>();
 	}
 	
-	public void addShip(String type, ArrayList<Point> locs)	{
-		Ship ship = new Ship(locs.size(), locs);
+	public void addShip(String type, List<Integer> intShipLocs)	{
+		Ship ship = new Ship(intShipLocs.size(), intShipLocs);
 		ships.put(type, ship);
 	}
 	

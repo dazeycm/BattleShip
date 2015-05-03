@@ -25,10 +25,13 @@ public class GameBoard extends JPanel{
 		initMyGridButtons();
 		initMyShotButtons();
 		
-		ArrayList<Point> locs = makePairs(locations);
+		List<String> locs = Arrays.asList(locations.split("&"));
+		ArrayList<Integer> intLocs = new ArrayList<Integer>();
+		for(String s : locs)
+			intLocs.add(Integer.parseInt(s));
 		
 		for(BSButton button : myBoard)	{
-			if(locs.contains(new Point(button.x, button.y)))
+			if(intLocs.contains(button.butNum))
 				button.setBackground(new Color(221, 221, 221));
 		}
 		
@@ -122,17 +125,6 @@ public class GameBoard extends JPanel{
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
-	}
-	
-	public ArrayList<Point> makePairs(String locations)	{
-		ArrayList<Point> ret = new ArrayList<Point>();
-		List<String> parts = Arrays.asList(locations.split("&"));
-		for(String s : parts)	{
-			List<String> nums = Arrays.asList(s.split(","));
-			Point p = new Point(Integer.parseInt(nums.get(0)), Integer.parseInt(nums.get(1)));
-			ret.add(p);
-		}
-		return ret;
 	}
 	
 	public class gridButtonResponder implements ActionListener {

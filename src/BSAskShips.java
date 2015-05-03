@@ -176,7 +176,7 @@ public class BSAskShips extends JPanel {
 						}
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.AIRCRAFT_CARRIER
-								+ toPointFormat(clickedButtons));
+								+ toNumFormat(clickedButtons));
 						clickedButtons.clear();
 						remove(carrier);
 						revalidate();
@@ -195,7 +195,7 @@ public class BSAskShips extends JPanel {
 						}
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.BATTLESHIP
-								+ toPointFormat(clickedButtons));
+								+ toNumFormat(clickedButtons));
 						clickedButtons.clear();
 						remove(battleship);
 						revalidate();
@@ -214,7 +214,7 @@ public class BSAskShips extends JPanel {
 						}
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.SUBMARINE
-								+ toPointFormat(clickedButtons));
+								+ toNumFormat(clickedButtons));
 						clickedButtons.clear();
 						remove(submarine);
 						revalidate();
@@ -232,7 +232,7 @@ public class BSAskShips extends JPanel {
 							button.makeUnclickable();
 						}
 						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER
-								+ toPointFormat(clickedButtons));
+								+ toNumFormat(clickedButtons));
 						clickedButtons.clear();
 						remove(cruiser);
 						revalidate();
@@ -251,7 +251,7 @@ public class BSAskShips extends JPanel {
 						}
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.PATROL_BOAT
-								+ toPointFormat(clickedButtons));
+								+ toNumFormat(clickedButtons));
 						clickedButtons.clear();
 						remove(patrol);
 						revalidate();
@@ -303,10 +303,10 @@ public class BSAskShips extends JPanel {
 			return allNextTo && (vertical || horizontal);
 		}
 
-		public String toPointFormat(ArrayList<BSButton> buttons) {
+		public String toNumFormat(ArrayList<BSButton> buttons) {
 			StringBuilder sb = new StringBuilder();
 			for (BSButton b : buttons) {
-				sb.append(b.getXY() + " ");
+				sb.append(b.butNum + ",");
 			}
 			return sb.toString();
 		}

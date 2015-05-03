@@ -14,8 +14,9 @@ import javax.swing.JPanel;
  * @author Craig Dazey and Nora Husani
  * @course CSE 211
  * @professor Dr. Kiper
- * @date 05/07/15 BSAskShips is a GUI interface that prompts each player to
- *       place their ships on the battle ship board
+ * @date 05/07/15
+ * @description BSAskShips is a GUI interface that prompts each player to place
+ *              their ships on the battle ship board
  *
  */
 public class BSAskShips extends JPanel {

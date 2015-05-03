@@ -14,8 +14,9 @@ import javax.swing.JTextField;
  * @author Craig Dazey and Nora Husani
  * @course CSE 211
  * @professor Dr. Kiper
- * @date 05/07/15 BSAskName is a GUI interface that prompts each player to enter
- *       their name in order to begin a game of battle ship
+ * @date 05/07/15
+ * @description BSAskName is a GUI interface that prompts each player to enter
+ *              their name in order to begin a game of battle ship
  *
  */
 public class BSAskName extends JPanel {

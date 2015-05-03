@@ -58,6 +58,8 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
+		//GameBoard gb = new GameBoard(bsc);
+		GameBoard gb = null;
 		BSAskShips getShips = null;
 		while(true)	{
 			String message = bsc.readLine();
@@ -69,6 +71,9 @@ public class BattleShipClient{
 			}
 			else if(message.contains(Protocol.POTTER))	{
 				getShips.kill();
+				List<String> parts = Arrays.asList(message.split(" "));
+				String locations = parts.get(1);
+				gb = new GameBoard(bsc, locations);
 			}
 		}
 	}

@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Map.Entry;
 
 
 public class BattleShipGame {
@@ -58,8 +59,31 @@ public class BattleShipGame {
 			player1GoesFirst = false;
 		}
 		
-		player1.sendMessage(Protocol.POTTER);
-		player2.sendMessage(Protocol.POTTER);
+		player1.sendMessage(Protocol.POTTER + getShipButtonLocs("player1"));
+		player2.sendMessage(Protocol.POTTER + getShipButtonLocs("player2"));
+	}
+	
+	public String getShipButtonLocs(String player)	{
+		ArrayList<Point> points = new ArrayList<Point>();
+		if(player.equals("player1"))	{
+			for(Entry<String, Ship> entry : player1Board.ships.entrySet())	{
+				for(Point p : entry.getValue().locs)
+					points.add(p);
+			}
+		} else	{
+			for(Entry<String, Ship> entry : player2Board.ships.entrySet())	{
+				for(Point p : entry.getValue().locs)
+					points.add(p);
+			}
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for(Point p : points)	{
+			sb.append((int)p.getX() + "," + (int)p.getY() + "&");
+		}
+		
+		return sb.toString();
 	}
 	
 	public void parseShip(String ships, String player)	{

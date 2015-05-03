@@ -93,4 +93,8 @@ public class Protocol {
 	 * This is the accuracy message
 	 */
 	public static final String ACCURACY = "ACCURACY";
+	/**
+	 * This is the "we're starting the game message"
+	 */
+	public static final String POTTER = "HARRY_POTTER ";
 }

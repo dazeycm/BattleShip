@@ -58,7 +58,6 @@ public class BattleShipClient{
 	
 	public static void main(String[] args)	{
 		BattleShipClient bsc = new BattleShipClient();
-		//GameBoard gb = new GameBoard(bsc);
 		GameBoard gb = null;
 		BSAskShips getShips = null;
 		while(true)	{

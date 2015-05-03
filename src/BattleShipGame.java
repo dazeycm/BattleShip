@@ -1,3 +1,8 @@
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class BattleShipGame {
 
@@ -10,6 +15,9 @@ public class BattleShipGame {
 	public BattleShipGame(ServerThread player1, ServerThread player2) {
 		this.player1 = player1;
 		this.player2 = player2;
+		
+		player1Board = new Board();
+		player2Board = new Board();
 	}
 
 	public void askForNames() {
@@ -26,10 +34,72 @@ public class BattleShipGame {
 	}
 	
 	public void getShips()	{
-		player1.sendMessage(Protocol.SNAPE);
-		player2.sendMessage(Protocol.SNAPE);
+		player1.sendMessage(Protocol.VOLDY);
+		player2.sendMessage(Protocol.VOLDY);
 		
-		//make boards here from received message
+		String ship;
+		
+		while(player1Board.ships.size() < 5 && player2Board.ships.size() < 5){
+			ship = player1.receiveMessage();
+			parseShip(ship, "player1");
+			ship = player2.receiveMessage();
+			parseShip(ship, "player2");
+		}
+		
+		System.out.println(player1Board.ships);
+		System.out.println(player2Board.ships);
+	}
+	
+	public void parseShip(String ships, String player)	{
+		List<String> locs = Arrays.asList(ships.split(" "));
+		String shipName = locs.get(1);
+		locs = locs.subList(2, locs.size());
+		ArrayList<Point> shipLocs = new ArrayList<Point>();
+		
+		for(String point : locs)	{
+			List<String> parts = Arrays.asList(point.split(","));
+			Point p =  new Point(Integer.parseInt(parts.get(0).substring(1)), Integer.parseInt(parts.get(1).substring(0, 1)));
+			shipLocs.add(p);
+		}
+				
+		switch (locs.size())	{
+		case 2:
+			if(player.equals("player1"))	{
+				player1Board.addShip(shipName, shipLocs);
+			} 
+			else	{
+				player2Board.addShip(shipName, shipLocs);
+			}
+			System.out.println("made " + shipName);
+			break;
+		case 3:
+			if(player.equals("player1"))	{
+				player1Board.addShip(shipName, shipLocs);
+			} 
+			else	{
+				player2Board.addShip(shipName, shipLocs);
+			}
+			System.out.println("made " + shipName);
+			break;
+		case 4:
+			if(player.equals("player1"))	{
+				player1Board.addShip(shipName, shipLocs);
+			} 
+			else	{
+				player2Board.addShip(shipName, shipLocs);
+			}
+			System.out.println("made " + shipName);
+			break;
+		case 5:
+			if(player.equals("player1"))	{
+				player1Board.addShip(shipName, shipLocs);
+			} 
+			else	{
+				player2Board.addShip(shipName, shipLocs);
+			}
+			System.out.println("made " + shipName);
+			break;	
+		}
 	}
 
 	public static void main(String[] args) {

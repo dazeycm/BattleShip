@@ -23,6 +23,4 @@ public class Board {
 		}
 		return numShipsLeft;
 	}
-	
-	//need method to try and shoot ship
 }

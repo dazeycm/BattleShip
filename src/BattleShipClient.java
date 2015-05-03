@@ -74,6 +74,40 @@ public class BattleShipClient{
 				String locations = parts.get(1);
 				gb = new GameBoard(bsc, locations);
 			}
+			else if(message.contains(Protocol.AUROR))	{
+				int location;
+				List<String> parts = Arrays.asList(message.split(" "));
+				if(message.contains(Protocol.AVADAKEDAVRA))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.hitShip(location);
+					gb.setErrorText("You sunk your oppenent's " + parts.get(4));
+				}
+				else if(message.contains(Protocol.CRUCIO))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.hitShip(location);
+				}
+				else if (message.contains(Protocol.STUPEFY))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.missedShip(location);
+				}
+			}
+			else if(message.contains(Protocol.RON))	{
+				int location;
+				List<String> parts = Arrays.asList(message.split(" "));
+				if(message.contains(Protocol.AVADAKEDAVRA))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.hitShip(location);
+					gb.setErrorText("Your opponent sunk your " + parts.get(4));
+				}
+				else if(message.contains(Protocol.CRUCIO))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.iHitShip(location);
+				}
+				else if (message.contains(Protocol.STUPEFY))	{
+					location = Integer.parseInt(parts.get(2));
+					gb.iMissedShip(location);
+				}
+			}
 		}
 	}
 }

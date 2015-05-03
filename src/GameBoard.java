@@ -13,11 +13,16 @@ public class GameBoard extends JPanel{
 	private ArrayList<BSButton> myBoard;
 	private ArrayList<BSButton> myShots;
 	private BattleShipClient client;
+	private JLabel errorText;
 	
 	public GameBoard (BattleShipClient client, String locations)	{
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
+		
+		errorText = new JLabel();
+		errorText.setBounds(10, 600, 400, 30);
+		this.add(errorText);
 		
 		myBoard = new ArrayList<BSButton>();
 		myShots = new ArrayList<BSButton>();
@@ -127,9 +132,65 @@ public class GameBoard extends JPanel{
 		frame.setResizable(false);
 	}
 	
+	public void hitShip(int butNum)	{
+		for(BSButton button : myBoard){
+			if(button.butNum == butNum)	{
+				button.setBackground(Color.RED);
+				button.setOpaque(true);
+				button.setBorderPainted(false);
+			}
+		}
+	}
+	
+	public void missedShip(int butNum)	{
+		for(BSButton button : myBoard){
+			if(button.butNum == butNum)	{
+				button.setBackground(Color.YELLOW);
+				button.setOpaque(true);
+				button.setBorderPainted(false);
+			}
+		}
+	}
+	
+	public void iHitShip(int butNum)	{
+		for(BSButton button : myShots){
+			if(button.butNum == butNum)	{
+				button.setBackground(Color.RED);
+				button.setOpaque(true);
+				button.setBorderPainted(false);
+			}
+		}
+	}
+	
+	public void iMissedShip(int butNum)	{
+		for(BSButton button : myShots){
+			if(button.butNum == butNum)	{
+				button.setBackground(Color.YELLOW);
+				button.setOpaque(true);
+				button.setBorderPainted(false);
+			}
+		}
+	}
+	
+	public void setErrorText(String message)	{
+		this.errorText.setText(message);
+	}
+	
 	public class gridButtonResponder implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
+			BSButton button = (BSButton) e.getSource();
+			if (button.isClickable()) {
+				if (!button.hasBeenClicked()) {
+					button.setBackground(new Color(221, 221, 221));
+					button.setOpaque(true);
+					button.setBorderPainted(false);
+					button.clicked();
+					button.makeUnclickable();
+					repaint();
+					client.sendMessage(Protocol.CURSE + button.butNum);
+				}
+			}
 		}
 	}
 }

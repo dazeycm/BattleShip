@@ -172,7 +172,10 @@ public class BSAskShips extends JPanel {
 								+ Protocol.AIRCRAFT_CARRIER
 								+ toPointFormat(clickedButtons));
 						clickedButtons.clear();
-
+						remove(carrier);
+						revalidate();
+						repaint();
+						errorText.setText("");
 					}
 				} else if (e.getSource() == battleship) {
 					if (clickedButtons.size() != 4)
@@ -187,6 +190,10 @@ public class BSAskShips extends JPanel {
 								+ Protocol.BATTLESHIP
 								+ toPointFormat(clickedButtons));
 						clickedButtons.clear();
+						remove(battleship);
+						revalidate();
+						repaint();
+						errorText.setText("");
 					}
 				} else if (e.getSource() == submarine) {
 					if (clickedButtons.size() != 3)
@@ -201,6 +208,10 @@ public class BSAskShips extends JPanel {
 								+ Protocol.SUBMARINE
 								+ toPointFormat(clickedButtons));
 						clickedButtons.clear();
+						remove(submarine);
+						revalidate();
+						repaint();
+						errorText.setText("");
 					}
 				} else if (e.getSource() == cruiser) {
 					if (clickedButtons.size() != 3)
@@ -214,6 +225,10 @@ public class BSAskShips extends JPanel {
 						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER
 								+ toPointFormat(clickedButtons));
 						clickedButtons.clear();
+						remove(cruiser);
+						revalidate();
+						repaint();
+						errorText.setText("");
 					}
 				} else if (e.getSource() == patrol) {
 					if (clickedButtons.size() != 2)
@@ -228,6 +243,10 @@ public class BSAskShips extends JPanel {
 								+ Protocol.PATROL_BOAT
 								+ toPointFormat(clickedButtons));
 						clickedButtons.clear();
+						remove(patrol);
+						revalidate();
+						repaint();
+						errorText.setText("");
 					}
 				}
 			} else {

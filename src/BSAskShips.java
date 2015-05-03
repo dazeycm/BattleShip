@@ -19,6 +19,7 @@ public class BSAskShips extends JPanel {
 	JButton cruiser = new JButton("Cruiser");
 	JButton patrol = new JButton("Patrol Boat");
 	JLabel errorText = new JLabel();
+	int shipPlaceCount;
 	private BattleShipClient client;
 
 	public BSAskShips(BattleShipClient client) {
@@ -176,6 +177,7 @@ public class BSAskShips extends JPanel {
 						revalidate();
 						repaint();
 						errorText.setText("");
+						shipPlaceCount++;
 					}
 				} else if (e.getSource() == battleship) {
 					if (clickedButtons.size() != 4)
@@ -194,6 +196,7 @@ public class BSAskShips extends JPanel {
 						revalidate();
 						repaint();
 						errorText.setText("");
+						shipPlaceCount++;
 					}
 				} else if (e.getSource() == submarine) {
 					if (clickedButtons.size() != 3)
@@ -212,6 +215,7 @@ public class BSAskShips extends JPanel {
 						revalidate();
 						repaint();
 						errorText.setText("");
+						shipPlaceCount++;
 					}
 				} else if (e.getSource() == cruiser) {
 					if (clickedButtons.size() != 3)
@@ -229,6 +233,7 @@ public class BSAskShips extends JPanel {
 						revalidate();
 						repaint();
 						errorText.setText("");
+						shipPlaceCount++;
 					}
 				} else if (e.getSource() == patrol) {
 					if (clickedButtons.size() != 2)
@@ -247,10 +252,15 @@ public class BSAskShips extends JPanel {
 						revalidate();
 						repaint();
 						errorText.setText("");
+						shipPlaceCount++;
 					}
 				}
 			} else {
 				errorText.setText("Invalid ship placement!");
+			}
+			
+			if(shipPlaceCount == 5)	{
+				errorText.setText("Please wait for your opponent to place their ships");
 			}
 		}
 

@@ -9,9 +9,7 @@ public class Ship {
 	
 	public Ship(int health, ArrayList<Point> locs)	{
 		this.health = health;
-		for(int i = 0; i < locs.size(); i++)	{
-			this.locs.add(locs.get(i));
-		}
+		this.locs = locs;
 	}
 	
 	public void shipHit()	{

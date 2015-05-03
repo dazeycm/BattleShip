@@ -47,7 +47,7 @@ public class BattleShipServer	{
 		bss.getClients();
 		bsg.askForNames();
 		bsg.getShips();
-		while(true){}
+		bsg.playGame();
 	}
 }
 

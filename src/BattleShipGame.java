@@ -2,6 +2,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 public class BattleShipGame {
@@ -45,9 +46,20 @@ public class BattleShipGame {
 			ship = player2.receiveMessage();
 			parseShip(ship, "player2");
 		}
+	}
+	
+	public void playGame()	{
+		Random rnJesus = new Random();
+		boolean player1GoesFirst = true;
+		int max = 10;
+		int min = 0;
+		int chance = rnJesus.nextInt(max - min + 1) + min;
+		if(chance < 5)	{
+			player1GoesFirst = false;
+		}
 		
-		System.out.println(player1Board.ships);
-		System.out.println(player2Board.ships);
+		player1.sendMessage(Protocol.POTTER);
+		player2.sendMessage(Protocol.POTTER);
 	}
 	
 	public void parseShip(String ships, String player)	{

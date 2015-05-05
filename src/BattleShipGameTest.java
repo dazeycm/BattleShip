@@ -56,13 +56,33 @@ public class BattleShipGameTest {
 	}
 
 	@Test
+	// getShipButtonLocsEmptyTest verifies that when getShipButtonLocs()
+	// is called on an empty playerboard that the method returns an empty string
+	public void getShipButtonLocsEmptyTest() {
+		// player1Board = new Board();
+		// player2Board = new Board();
+		// List<Integer> intShipLocs = new ArrayList<Integer>();
+		// intShipLocs.add(33);
+		// intShipLocs.add(34);
+		// player1Board.addShip("PATROL_BOAT", intShipLocs);
+		String result = bsg.getShipButtonLocs("player1");
+		assertEquals(result, "");
+
+	}
+
+	@Test
+	// getShipButtonLocsEmptyTest verifies that when getShipButtonLocs()
+	// is called on an empty playerboard that the method returns an empty string
 	public void getShipButtonLocsTest() {
+		player1Board = new Board();
+		player2Board = new Board();
 		List<Integer> intShipLocs = new ArrayList<Integer>();
 		intShipLocs.add(33);
 		intShipLocs.add(34);
 		player1Board.addShip("PATROL_BOAT", intShipLocs);
-		String result = bsg.getShipButtonLocs("player1");
-		System.out.println(result);
+		bsg.getShipButtonLocs("player1");
+		assertEquals(2, intShipLocs.size());
+
 	}
 
 }

@@ -80,6 +80,7 @@ public class GameBoard extends JPanel {
 		scrollBar.setBounds(10, 550, 550, 200);
 		log.setFont(new Font("Impact", Font.PLAIN, 17));
 		log.setEditable(false);	
+		log.setBackground(new Color(221, 221, 221));
 		this.add(scrollBar);
 		
 		DefaultCaret caret = (DefaultCaret)log.getCaret();

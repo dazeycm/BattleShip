@@ -47,8 +47,6 @@ public class GameBoard extends JPanel {
 	 *            a String that represents the locations
 	 */
 	public GameBoard(BattleShipClient client, String locations) {
-		System.out.println("This is String locations from GameBoard "
-				+ locations);
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
@@ -364,7 +362,6 @@ public class GameBoard extends JPanel {
 		myShots = new ArrayList<BSButton>();
 
 		initExampleButtons();
-		initPlayerNames();
 		initLog();
 		initErrorText();
 		initMyGridButtons();
@@ -379,8 +376,6 @@ public class GameBoard extends JPanel {
 			if (intLocs.contains(button.butNum))
 				button.setBackground(new Color(221, 221, 221));
 		}
-
-		initFrame();
 	}
 
 	/**

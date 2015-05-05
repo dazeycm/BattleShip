@@ -106,7 +106,6 @@ public class BattleShipClient {
 			String message = bsc.readLine();
 			if (message.contains(Protocol.ALBUS)) {
 				askName = new BSAskName(bsc);
-				bsc.name = askName.name;
 			} else if (message.contains(Protocol.VOLDY)) {
 				getShips = new BSAskShips(bsc);
 			} else if (message.contains(Protocol.POTTER)) {

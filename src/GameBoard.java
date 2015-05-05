@@ -160,7 +160,7 @@ public class GameBoard extends JPanel {
 	 * Side Effects: creates a new JFrame object and modifies it
 	 */
 	void initFrame() {
-		frame = new JFrame("Best of luck! " + client.name);
+		frame = new JFrame("Best of luck, " + client.name + "!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 1100, 700);

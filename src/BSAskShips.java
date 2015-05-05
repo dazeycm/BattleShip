@@ -154,7 +154,7 @@ public class BSAskShips extends JPanel {
 	 * board Side Effects: creates a new JFrame object
 	 */
 	void initFrame() {
-		frame = new JFrame("Please place your ships!");
+		frame = new JFrame("Please place your ships, " + client.name + "!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 525, 700);

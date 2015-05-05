@@ -25,7 +25,6 @@ public class BSAskName extends JPanel {
 	private JTextField nameEntry;
 	private JButton enterName;
 	private JLabel enterNameText;
-	public String name = null;
 	@SuppressWarnings("unused")
 	private BattleShipClient client;
 
@@ -54,8 +53,8 @@ public class BSAskName extends JPanel {
 		enterName.setBounds(280, 110, 90, 30);
 		enterName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				name = nameEntry.getText();
-				client.sendMessage(Protocol.SNAPE + name);
+				client.name = nameEntry.getText();
+				client.sendMessage(Protocol.SNAPE + client.name);
 				frame.setVisible(false);
 				frame.dispose();
 			}

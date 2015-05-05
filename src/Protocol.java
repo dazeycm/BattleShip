@@ -102,24 +102,22 @@ public class Protocol {
 	 */
 	public static final String RON = "RON_WEASLEY ";
 	/**
-	 * This is the "your opponent's name is" message 
+	 * This is the "your opponent's name is" message
 	 */
 	public static final String POLYJUICE = "POLYJUICE_POTION ";
-	
-	public static String normalizeShipName(String name){
-		switch(name)	{
-		case Protocol.AIRCRAFT_CARRIER:
+
+	public static String normalizeShipName(String name) {
+		if (name.equals(Protocol.AIRCRAFT_CARRIER))
 			return "Aircraft Carrier";
-		case Protocol.BATTLESHIP:
+		else if (name.equals(Protocol.BATTLESHIP))
 			return "Battleship";
-		case Protocol.SUBMARINE:
+		else if (name.equals(Protocol.SUBMARINE))
 			return "Submarine";
-		case Protocol.CRUISER:
+		else if (name.equals(Protocol.CRUISER))
 			return "Cruiser";
-		case Protocol.PATROL_BOAT:
+		else if (name.equals(Protocol.PATROL_BOAT))
 			return "Patrol Boat";
-		default: 
+		else
 			return null;
-		}
 	}
 }

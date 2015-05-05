@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,11 +9,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.text.DefaultCaret;
 
 /**
@@ -50,10 +47,12 @@ public class GameBoard extends JPanel {
 	 *            a String that represents the locations
 	 */
 	public GameBoard(BattleShipClient client, String locations) {
+		System.out.println("This is String locations from GameBoard "
+				+ locations);
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
-		
+
 		myBoard = new ArrayList<BSButton>();
 		myShots = new ArrayList<BSButton>();
 
@@ -76,76 +75,78 @@ public class GameBoard extends JPanel {
 
 		initFrame();
 	}
-	
-	public void initExampleButtons()	{
+
+	public void initExampleButtons() {
 		BSButton hit = new BSButton(999, 999, 999);
 		BSButton miss = new BSButton(999, 999, 999);
-		
+
 		hit.setBackground(Color.RED);
 		hit.setOpaque(true);
 		hit.setBorderPainted(false);
-		
+
 		miss.setBackground(Color.YELLOW);
 		miss.setOpaque(true);
 		miss.setBorderPainted(false);
-		
+
 		hit.setBounds(600, 580, 45, 45);
 		miss.setBounds(600, 680, 45, 45);
-		
+
 		this.add(hit);
 		this.add(miss);
-		
+
 		JLabel hitText = new JLabel("= Hit");
 		JLabel missText = new JLabel("= Miss");
-		
+
 		hitText.setFont(new Font("Impact", Font.PLAIN, 25));
 		missText.setFont(new Font("Impact", Font.PLAIN, 25));
-		
+
 		hitText.setBounds(650, 580, 300, 50);
 		missText.setBounds(650, 680, 300, 50);
-		
+
 		hitText.setForeground(new Color(221, 221, 221));
 		missText.setForeground(new Color(221, 221, 221));
-		
+
 		this.add(hitText);
 		this.add(missText);
-		
+
 	}
-	
-	public void initLog()	{
+
+	public void initLog() {
 		log = new JTextArea();
 		log.setFont(new Font("Impact", Font.PLAIN, 17));
-		log.setEditable(false);	
+		log.setEditable(false);
 		log.setBackground(new Color(221, 221, 221));
 		log.setOpaque(true);
-		
+
 		scrollBar = new JScrollPane(log);
 		scrollBar.setBounds(10, 550, 550, 200);
-		scrollBar.getVerticalScrollBar().setBackground(new Color(230, 230, 230));
+		scrollBar.getVerticalScrollBar()
+				.setBackground(new Color(230, 230, 230));
 		scrollBar.getVerticalScrollBar().setOpaque(true);
-		
+
 		this.add(scrollBar);
-		
-		DefaultCaret caret = (DefaultCaret)log.getCaret();
+
+		DefaultCaret caret = (DefaultCaret) log.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 	}
-	
-	public void initPlayerNames()	{
+
+	public void initPlayerNames() {
 		yourBoard = new JLabel("Your Board", SwingConstants.CENTER);
-		theirBoard = new JLabel(client.opponentName + "'s Board", SwingConstants.CENTER);
-		
+		theirBoard = new JLabel(client.opponentName + "'s Board",
+				SwingConstants.CENTER);
+
 		yourBoard.setBounds(10, 0, 500, 50);
 		yourBoard.setFont(new Font("Impact", Font.PLAIN, 25));
 		yourBoard.setForeground(new Color(221, 221, 221));
 		this.add(yourBoard);
-		
+
 		theirBoard.setBounds(590, 0, 500, 50);
 		theirBoard.setFont(new Font("Impact", Font.PLAIN, 25));
 		theirBoard.setForeground(new Color(221, 221, 221));
 		this.add(theirBoard);
 	}
-	
-	public void initErrorText()	{
+
+	public void initErrorText() {
 		errorText = new JLabel();
 		errorText.setBounds(10, 600, 400, 30);
 		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
@@ -335,20 +336,51 @@ public class GameBoard extends JPanel {
 		}
 	}
 
-	public void log(String message)	{
+	public void log(String message) {
 		this.log.append(message + "\n");
 	}
-	
+
 	// for formatting errors
 	public void setErrorText(String message) {
 		this.errorText.setText(message);
 	}
-	
-	public static void main(String[] args)	{
+
+	public static void main(String[] args) {
 		BattleShipClient bsc = new BattleShipClient();
 		bsc.name = "Craig";
 		bsc.opponentName = "Nora";
 		GameBoard gb = new GameBoard(bsc, "0");
+	}
+
+	/**
+	 * GameBoard is an alternate constructor used only for testing purposes to
+	 * avoid messy client/server setup
+	 */
+	public GameBoard(String locations) {
+		this.setLayout(null);
+		this.setBackground(new Color(84, 84, 84));
+
+		myBoard = new ArrayList<BSButton>();
+		myShots = new ArrayList<BSButton>();
+
+		initExampleButtons();
+		initPlayerNames();
+		initLog();
+		initErrorText();
+		initMyGridButtons();
+		initMyShotButtons();
+
+		List<String> locs = Arrays.asList(locations.split("&"));
+		ArrayList<Integer> intLocs = new ArrayList<Integer>();
+		for (String s : locs)
+			intLocs.add(Integer.parseInt(s));
+
+		for (BSButton button : myBoard) {
+			if (intLocs.contains(button.butNum))
+				button.setBackground(new Color(221, 221, 221));
+		}
+
+		initFrame();
 	}
 
 	/**

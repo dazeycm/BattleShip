@@ -376,5 +376,24 @@ public class BSAskShips extends JPanel {
 			}
 			return sb.toString();
 		}
+
+	}
+
+	/**
+	 * BSAskShips is an alternate constructor used only for testing purposes to
+	 * avoid messy client/server setup
+	 */
+	public BSAskShips() {
+		this.setLayout(null);
+		this.setBackground(new Color(84, 84, 84));
+		clickedButtons = new ArrayList<BSButton>();
+
+		errorText.setBounds(20, 650, 600, 30);
+		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
+		errorText.setForeground(new Color(221, 221, 221));
+		this.add(errorText);
+
+		initGridButtons();
+		intitShipButtons();
 	}
 }

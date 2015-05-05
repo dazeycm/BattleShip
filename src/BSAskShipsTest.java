@@ -1,4 +1,4 @@
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,8 +20,15 @@ public class BSAskShipsTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	// askShipConstructorTest verifies that the askShips constructor
+	// correctly creates a GUI for receiving a player's ships
+	public void askShipConstructorTest() {
+		BSAskShips ask = new BSAskShips();
+		assertFalse(ask.carrier == null);
+		assertFalse(ask.battleship == null);
+		assertFalse(ask.submarine == null);
+		assertFalse(ask.cruiser == null);
+		assertFalse(ask.patrol == null);
 	}
 
 }

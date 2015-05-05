@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ public class GameBoard extends JPanel {
 
 		errorText = new JLabel();
 		errorText.setBounds(10, 600, 400, 30);
+		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
+		errorText.setForeground(new Color(221, 221, 221));
 		this.add(errorText);
 
 		myBoard = new ArrayList<BSButton>();

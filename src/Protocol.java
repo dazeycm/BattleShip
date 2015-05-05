@@ -101,6 +101,10 @@ public class Protocol {
 	 * This is a status update message after sending a shot
 	 */
 	public static final String RON = "RON_WEASLEY ";
+	/**
+	 * This is the "your opponent's name is" message 
+	 */
+	public static final String POLYJUICE = "POLYJUICE_POTION ";
 	
 	public static String normalizeShipName(String name){
 		switch(name)	{

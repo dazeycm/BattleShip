@@ -92,9 +92,9 @@ public class BattleShipGame {
 		int max = 10;
 		int min = 0;
 		int chance = rnJesus.nextInt(max - min + 1) + min;
-		// if(chance < 5) {
-		// player1GoesFirst = false;
-		// }
+		if(chance < 5) {
+			player1GoesFirst = false;
+		}
 
 		player1.sendMessage(Protocol.POTTER + getShipButtonLocs("player1"));
 		player2.sendMessage(Protocol.POTTER + getShipButtonLocs("player2"));
@@ -172,6 +172,80 @@ public class BattleShipGame {
 					player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY
 							+ butNum);
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
+							+ butNum);
+				}
+				sentMessage = false;
+			} else 	{
+				String loc = player2.receiveMessage();
+				int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
+				sentMessage = false;
+
+				for (Entry<String, Ship> entry : player1Board.ships.entrySet()) {
+					if (entry.getValue().locs.contains(butNum)) {
+						System.out.println("It's a hit!");
+						entry.getValue().shipHit();
+						if (entry.getValue().isSunk()) {
+							System.out.println("Ship sunk!");
+							player1.sendMessage(Protocol.AUROR
+									+ Protocol.CRUCIO + butNum + " "
+									+ Protocol.AVADAKEDAVRA + entry.getKey());
+							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
+									+ butNum + " " + Protocol.AVADAKEDAVRA
+									+ entry.getKey());
+							sentMessage = true;
+							break;
+						} else {
+							player1.sendMessage(Protocol.AUROR
+									+ Protocol.CRUCIO + butNum);
+							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
+									+ butNum);
+							sentMessage = true;
+							break;
+						}
+					}
+				}
+				if (!sentMessage) {
+					System.out.println("It's a miss!");
+					player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY
+							+ butNum);
+					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
+							+ butNum);
+				}
+				
+				loc = player1.receiveMessage();
+				butNum = Integer
+						.parseInt(loc.substring(loc.indexOf(" ") + 1));
+				sentMessage = false;
+
+				for (Entry<String, Ship> entry : player2Board.ships.entrySet()) {
+					if (entry.getValue().locs.contains(butNum)) {
+						System.out.println("It's a hit!");
+						entry.getValue().shipHit();
+						if (entry.getValue().isSunk()) {
+							System.out.println("Ship sunk!");
+							player2.sendMessage(Protocol.AUROR
+									+ Protocol.CRUCIO + butNum + " "
+									+ Protocol.AVADAKEDAVRA + entry.getKey());
+							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
+									+ butNum + " " + Protocol.AVADAKEDAVRA
+									+ entry.getKey());
+							sentMessage = true;
+							break;
+						} else {
+							player2.sendMessage(Protocol.AUROR
+									+ Protocol.CRUCIO + butNum);
+							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
+									+ butNum);
+							sentMessage = true;
+							break;
+						}
+					}
+				}
+				if (!sentMessage) {
+					System.out.println("It's a miss!");
+					player2.sendMessage(Protocol.AUROR + Protocol.STUPEFY
+							+ butNum);
+					player1.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
 				}
 				sentMessage = false;

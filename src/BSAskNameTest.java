@@ -1,5 +1,3 @@
-import static org.junit.Assert.fail;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,8 +18,8 @@ public class BSAskNameTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void askNameConstructorTest() {
+		BSAskName ask = new BSAskName();
 	}
 
 }

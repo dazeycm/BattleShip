@@ -83,4 +83,31 @@ public class BSAskName extends JPanel {
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
+
+	/**
+	 * BSAskName is an alternate constructor used only for testing purposes to
+	 * avoid messy client/server setup
+	 */
+	public BSAskName() {
+		this.setLayout(null);
+		this.setBackground(new Color(50, 200, 200));
+		nameEntry = new JTextField();
+		nameEntry.setBounds(25, 60, 350, 30);
+		this.add(nameEntry);
+
+		enterName = new JButton("Submit");
+		enterName.setFont(new Font("Impact", Font.PLAIN, 17));
+		enterName.setBackground(new Color(221, 221, 221));
+		enterName.setOpaque(true);
+		enterName.setBorderPainted(false);
+		enterName.setBounds(280, 110, 90, 30);
+		this.add(enterName);
+
+		enterNameText = new JLabel("Please enter your name:");
+		enterNameText.setFont(new Font("Impact", Font.PLAIN, 17));
+		enterNameText.setBounds(25, 40, 350, 20);
+		this.add(enterNameText);
+
+		initFrame();
+	}
 }

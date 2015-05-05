@@ -9,9 +9,9 @@ import org.junit.Test;
  * @course CSE 211
  * @professor Dr. Kiper
  * @date 05/07/15
- * @description BSAskName is a JUnit Test Case to test the methods in the class
- *              BSAskName partitioned to check correct and incorrect states of
- *              the GUI
+ * @description BSAskNameTest is a JUnit Test Case to test the methods in the
+ *              class BSAskName partitioned to check correct and incorrect
+ *              states of the GUI
  */
 public class BSAskNameTest {
 

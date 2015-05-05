@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertFalse;
 
+import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,6 +31,13 @@ public class BSAskShipsTest {
 		assertFalse(ask.submarine == null);
 		assertFalse(ask.cruiser == null);
 		assertFalse(ask.patrol == null);
+	}
+
+	@Test
+	public void isValidShipTest() {
+		BSAskShips ask = new BSAskShips();
+		ArrayList<BSButton> buttons;
+		// ask.isValidShip(buttons);
 	}
 
 }

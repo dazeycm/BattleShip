@@ -55,6 +55,7 @@ public class GameBoard extends JPanel {
 		myBoard = new ArrayList<BSButton>();
 		myShots = new ArrayList<BSButton>();
 
+		initExampleButtons();
 		initPlayerNames();
 		initLog();
 		initErrorText();
@@ -72,6 +73,41 @@ public class GameBoard extends JPanel {
 		}
 
 		initFrame();
+	}
+	
+	public void initExampleButtons()	{
+		BSButton hit = new BSButton(999, 999, 999);
+		BSButton miss = new BSButton(999, 999, 999);
+		
+		hit.setBackground(Color.RED);
+		hit.setOpaque(true);
+		hit.setBorderPainted(false);
+		
+		miss.setBackground(Color.YELLOW);
+		miss.setOpaque(true);
+		miss.setBorderPainted(false);
+		
+		hit.setBounds(600, 580, 45, 45);
+		miss.setBounds(600, 680, 45, 45);
+		
+		this.add(hit);
+		this.add(miss);
+		
+		JLabel hitText = new JLabel("= Hit");
+		JLabel missText = new JLabel("= Miss");
+		
+		hitText.setFont(new Font("Impact", Font.PLAIN, 25));
+		missText.setFont(new Font("Impact", Font.PLAIN, 25));
+		
+		hitText.setBounds(650, 580, 300, 50);
+		missText.setBounds(650, 680, 300, 50);
+		
+		hitText.setForeground(new Color(221, 221, 221));
+		missText.setForeground(new Color(221, 221, 221));
+		
+		this.add(hitText);
+		this.add(missText);
+		
 	}
 	
 	public void initLog()	{

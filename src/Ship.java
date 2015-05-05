@@ -37,4 +37,14 @@ public class Ship {
 	public boolean isSunk() {
 		return health <= 0;
 	}
+
+	// getter created solely for testing purposes
+	public int getHealth() {
+		return health;
+	}
+
+	// setter created solely for testing purposes
+	public void setHealth(int health) {
+		this.health = health;
+	}
 }

@@ -1,4 +1,7 @@
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,8 +23,12 @@ public class ShipTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void ShipConstructorTest() {
+		List<Integer> intShipLocs = new ArrayList<Integer>();
+		intShipLocs.add(33);
+		intShipLocs.add(34);
+		Ship s = new Ship(2, intShipLocs);
+		assertEquals(2, s.getHealth());
 	}
 
 }

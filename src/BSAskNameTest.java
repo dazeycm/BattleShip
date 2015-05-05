@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertFalse;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,8 +20,11 @@ public class BSAskNameTest {
 	}
 
 	@Test
+	// askNameConstructorTest verifies that the askName constructor
+	// correctly creates a GUI for receiving a player's name
 	public void askNameConstructorTest() {
 		BSAskName ask = new BSAskName();
+		assertFalse(ask.getEnterName() == null);
 	}
 
 }

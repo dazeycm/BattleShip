@@ -46,13 +46,13 @@ public class BSAskName extends JPanel {
 		nameEntry.setBounds(25, 60, 350, 30);
 		this.add(nameEntry);
 
-		enterName = new JButton("Submit");
-		enterName.setFont(new Font("Impact", Font.PLAIN, 17));
-		enterName.setBackground(new Color(221, 221, 221));
-		enterName.setOpaque(true);
-		enterName.setBorderPainted(false);
-		enterName.setBounds(280, 110, 90, 30);
-		enterName.addActionListener(new ActionListener() {
+		setEnterName(new JButton("Submit"));
+		getEnterName().setFont(new Font("Impact", Font.PLAIN, 17));
+		getEnterName().setBackground(new Color(221, 221, 221));
+		getEnterName().setOpaque(true);
+		getEnterName().setBorderPainted(false);
+		getEnterName().setBounds(280, 110, 90, 30);
+		getEnterName().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				name = nameEntry.getText();
 				client.sendMessage(Protocol.SNAPE + name);
@@ -60,7 +60,7 @@ public class BSAskName extends JPanel {
 				frame.dispose();
 			}
 		});
-		this.add(enterName);
+		this.add(getEnterName());
 
 		enterNameText = new JLabel("Please enter your name:");
 		enterNameText.setFont(new Font("Impact", Font.PLAIN, 17));
@@ -95,13 +95,13 @@ public class BSAskName extends JPanel {
 		nameEntry.setBounds(25, 60, 350, 30);
 		this.add(nameEntry);
 
-		enterName = new JButton("Submit");
-		enterName.setFont(new Font("Impact", Font.PLAIN, 17));
-		enterName.setBackground(new Color(221, 221, 221));
-		enterName.setOpaque(true);
-		enterName.setBorderPainted(false);
-		enterName.setBounds(280, 110, 90, 30);
-		this.add(enterName);
+		setEnterName(new JButton("Submit"));
+		getEnterName().setFont(new Font("Impact", Font.PLAIN, 17));
+		getEnterName().setBackground(new Color(221, 221, 221));
+		getEnterName().setOpaque(true);
+		getEnterName().setBorderPainted(false);
+		getEnterName().setBounds(280, 110, 90, 30);
+		this.add(getEnterName());
 
 		enterNameText = new JLabel("Please enter your name:");
 		enterNameText.setFont(new Font("Impact", Font.PLAIN, 17));
@@ -109,5 +109,24 @@ public class BSAskName extends JPanel {
 		this.add(enterNameText);
 
 		initFrame();
+	}
+
+	/**
+	 * getter for enterName created solely for testing purposes
+	 * 
+	 * @return a JButton for the name GUI
+	 */
+	public JButton getEnterName() {
+		return enterName;
+	}
+
+	/**
+	 * setter for enterName created solely for testing purposes
+	 * 
+	 * @param enterName
+	 *            a JButton for the name GUI
+	 */
+	public void setEnterName(JButton enterName) {
+		this.enterName = enterName;
 	}
 }

@@ -10,9 +10,11 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.text.DefaultCaret;
 
 /**
@@ -112,16 +114,20 @@ public class GameBoard extends JPanel {
 	
 	public void initLog()	{
 		log = new JTextArea();
-		scrollBar = new JScrollPane(log);
-		scrollBar.setBounds(10, 550, 550, 200);
 		log.setFont(new Font("Impact", Font.PLAIN, 17));
 		log.setEditable(false);	
 		log.setBackground(new Color(221, 221, 221));
+		log.setOpaque(true);
+		
+		scrollBar = new JScrollPane(log);
+		scrollBar.setBounds(10, 550, 550, 200);
+		scrollBar.getVerticalScrollBar().setBackground(new Color(230, 230, 230));
+		scrollBar.getVerticalScrollBar().setOpaque(true);
+		
 		this.add(scrollBar);
 		
 		DefaultCaret caret = (DefaultCaret)log.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-		
 	}
 	
 	public void initPlayerNames()	{

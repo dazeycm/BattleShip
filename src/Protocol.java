@@ -101,4 +101,21 @@ public class Protocol {
 	 * This is a status update message after sending a shot
 	 */
 	public static final String RON = "RON_WEASLEY ";
+	
+	public static String normalizeShipName(String name){
+		switch(name)	{
+		case Protocol.AIRCRAFT_CARRIER:
+			return "Aircraft Carrier";
+		case Protocol.BATTLESHIP:
+			return "Battleship";
+		case Protocol.SUBMARINE:
+			return "Submarine";
+		case Protocol.CRUISER:
+			return "Cruiser";
+		case Protocol.PATROL_BOAT:
+			return "Patrol Boat";
+		default: 
+			return null;
+		}
+	}
 }

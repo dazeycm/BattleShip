@@ -14,7 +14,7 @@ import org.junit.Test;
  * @professor Dr. Kiper
  * @date 05/07/15
  * @description BattleShipGameTest is a JUnit Test Case to test the methods in
- *              the class BattleShipGame partioned to check correct and
+ *              the class BattleShipGame partitioned to check correct and
  *              incorrect states of the game
  */
 

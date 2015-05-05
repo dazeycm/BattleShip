@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Scrollbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -8,6 +10,10 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.text.DefaultCaret;
 
 /**
  * 
@@ -20,11 +26,16 @@ import javax.swing.JPanel;
  */
 public class GameBoard extends JPanel {
 	private static final long serialVersionUID = 1002898930501111631L;
+	private final int YSTART = 40;
 	private JFrame frame;
 	private ArrayList<BSButton> myBoard;
 	private ArrayList<BSButton> myShots;
 	private BattleShipClient client;
+	private JTextArea log;
+	private JScrollPane scrollBar;
 	private JLabel errorText;
+	private JLabel yourBoard;
+	private JLabel theirBoard;
 
 	/**
 	 * Preconditions: client and locations are not NULL Postconditions: creates
@@ -40,14 +51,13 @@ public class GameBoard extends JPanel {
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
-
-		errorText = new JLabel();
-		errorText.setBounds(10, 600, 400, 30);
-		this.add(errorText);
-
+		
 		myBoard = new ArrayList<BSButton>();
 		myShots = new ArrayList<BSButton>();
 
+		initPlayerNames();
+		initLog();
+		initErrorText();
 		initMyGridButtons();
 		initMyShotButtons();
 
@@ -62,6 +72,42 @@ public class GameBoard extends JPanel {
 		}
 
 		initFrame();
+	}
+	
+	public void initLog()	{
+		log = new JTextArea();
+		scrollBar = new JScrollPane(log);
+		scrollBar.setBounds(10, 550, 550, 200);
+		log.setFont(new Font("Impact", Font.PLAIN, 17));
+		log.setEditable(false);	
+		this.add(scrollBar);
+		
+		DefaultCaret caret = (DefaultCaret)log.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+	}
+	
+	public void initPlayerNames()	{
+		yourBoard = new JLabel("Your Board", SwingConstants.CENTER);
+		theirBoard = new JLabel(client.opponentName + "'s Board", SwingConstants.CENTER);
+		
+		yourBoard.setBounds(10, 0, 500, 50);
+		yourBoard.setFont(new Font("Impact", Font.PLAIN, 25));
+		yourBoard.setForeground(new Color(221, 221, 221));
+		this.add(yourBoard);
+		
+		theirBoard.setBounds(590, 0, 500, 50);
+		theirBoard.setFont(new Font("Impact", Font.PLAIN, 25));
+		theirBoard.setForeground(new Color(221, 221, 221));
+		this.add(theirBoard);
+	}
+	
+	public void initErrorText()	{
+		errorText = new JLabel();
+		errorText.setBounds(10, 600, 400, 30);
+		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
+		errorText.setForeground(new Color(221, 221, 221));
+		this.add(errorText);
 	}
 
 	/**
@@ -81,8 +127,8 @@ public class GameBoard extends JPanel {
 		int count = 0;
 		int gap = 5;
 		int dx = 10;
-		int dy = 10;
-		int starty = 10;
+		int dy = YSTART;
+		int starty = YSTART;
 
 		for (int i = 0; i < 100; i++) {
 			if (i == 0) {
@@ -123,8 +169,8 @@ public class GameBoard extends JPanel {
 		int count = 0;
 		int gap = 5;
 		int dx = 590;
-		int dy = 10;
-		int starty = 10;
+		int dy = YSTART;
+		int starty = YSTART;
 
 		gridButtonResponder br = new gridButtonResponder();
 
@@ -157,10 +203,10 @@ public class GameBoard extends JPanel {
 	 * Side Effects: creates a new JFrame object and modifies it
 	 */
 	void initFrame() {
-		frame = new JFrame("Best of luck! " + client.name);
+		frame = new JFrame("Best of luck, " + client.name + "!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
-		frame.setBounds(0, 0, 1100, 700);
+		frame.setBounds(0, 0, 1100, 800);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -180,6 +226,7 @@ public class GameBoard extends JPanel {
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				log("Your opponent shot and hit");
 				repaint();
 			}
 		}
@@ -199,6 +246,7 @@ public class GameBoard extends JPanel {
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				log("Your opponent shot and missed");
 				repaint();
 			}
 		}
@@ -218,6 +266,7 @@ public class GameBoard extends JPanel {
 				button.setBackground(Color.RED);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				log("You hit");
 				repaint();
 			}
 		}
@@ -237,14 +286,26 @@ public class GameBoard extends JPanel {
 				button.setBackground(Color.YELLOW);
 				button.setOpaque(true);
 				button.setBorderPainted(false);
+				log("You missed");
 				repaint();
 			}
 		}
 	}
 
+	public void log(String message)	{
+		this.log.append(message + "\n");
+	}
+	
 	// for formatting errors
 	public void setErrorText(String message) {
 		this.errorText.setText(message);
+	}
+	
+	public static void main(String[] args)	{
+		BattleShipClient bsc = new BattleShipClient();
+		bsc.name = "Craig";
+		bsc.opponentName = "Nora";
+		GameBoard gb = new GameBoard(bsc, "0");
 	}
 
 	/**

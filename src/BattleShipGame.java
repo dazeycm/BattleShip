@@ -57,6 +57,9 @@ public class BattleShipGame {
 		name = player2.receiveMessage();
 		name = name.substring(name.indexOf(" ") + 1);
 		player2.name = name;
+		
+		player1.sendMessage(Protocol.POLYJUICE + player2.name);
+		player2.sendMessage(Protocol.POLYJUICE + player1.name);
 	}
 
 	/**
@@ -171,6 +174,7 @@ public class BattleShipGame {
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
 				}
+				sentMessage = false;
 			}
 		}
 	}

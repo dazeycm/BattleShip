@@ -26,6 +26,7 @@ public class BattleShipClient {
 	public PrintWriter output;
 	public Scanner kb;
 	public String name;
+	public String opponentName;
 
 	/**
 	 * Preconditions: none Postconditions: creates a BattleShipClient Side
@@ -106,7 +107,6 @@ public class BattleShipClient {
 			String message = bsc.readLine();
 			if (message.contains(Protocol.ALBUS)) {
 				askName = new BSAskName(bsc);
-				bsc.name = askName.name;
 			} else if (message.contains(Protocol.VOLDY)) {
 				getShips = new BSAskShips(bsc);
 			} else if (message.contains(Protocol.POTTER)) {
@@ -120,7 +120,7 @@ public class BattleShipClient {
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
-					gb.setErrorText("Your opponent sunk your " + parts.get(4));
+					gb.log("Your opponent sunk your " + Protocol.normalizeShipName(parts.get(4) + " "));
 				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
@@ -134,7 +134,7 @@ public class BattleShipClient {
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
-					gb.setErrorText("You sunk your opponent's " + parts.get(4));
+					gb.log("You sunk your opponent's " + Protocol.normalizeShipName(parts.get(4) + " "));
 				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
@@ -142,6 +142,9 @@ public class BattleShipClient {
 					location = Integer.parseInt(parts.get(2));
 					gb.iMissedShip(location);
 				}
+			} else if (message.contains(Protocol.POLYJUICE)) {
+				List<String> parts = Arrays.asList(message.split(" "));
+				bsc.opponentName = parts.get(1);
 			}
 		}
 	}

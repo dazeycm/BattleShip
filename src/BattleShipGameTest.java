@@ -14,7 +14,8 @@ import org.junit.Test;
  * @professor Dr. Kiper
  * @date 05/07/15
  * @description BattleShipGameTest is a JUnit Test Case to test the methods in
- *              the class BattleShipGame
+ *              the class BattleShipGame partioned to check correct and
+ *              incorrect states of the game
  */
 
 public class BattleShipGameTest {
@@ -59,12 +60,6 @@ public class BattleShipGameTest {
 	// getShipButtonLocsEmptyTest verifies that when getShipButtonLocs()
 	// is called on an empty playerboard that the method returns an empty string
 	public void getShipButtonLocsEmptyTest() {
-		// player1Board = new Board();
-		// player2Board = new Board();
-		// List<Integer> intShipLocs = new ArrayList<Integer>();
-		// intShipLocs.add(33);
-		// intShipLocs.add(34);
-		// player1Board.addShip("PATROL_BOAT", intShipLocs);
 		String result = bsg.getShipButtonLocs("player1");
 		assertEquals(result, "");
 
@@ -72,7 +67,7 @@ public class BattleShipGameTest {
 
 	@Test
 	// getShipButtonLocsEmptyTest verifies that when getShipButtonLocs()
-	// is called on an empty playerboard that the method returns an empty string
+	// is called that the method adds the correct locations to the board
 	public void getShipButtonLocsTest() {
 		player1Board = new Board();
 		player2Board = new Board();

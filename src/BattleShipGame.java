@@ -207,7 +207,6 @@ public class BattleShipGame {
 		for (Integer p : locs) {
 			sb.append(p + "&");
 		}
-
 		return sb.toString();
 	}
 
@@ -224,7 +223,6 @@ public class BattleShipGame {
 	public void parseShip(String ships, String player) {
 		List<String> parts = Arrays.asList(ships.split(" "));
 		String shipName = parts.get(1);
-		System.out.println(shipName);
 		String locations = parts.get(2);
 		List<String> shipLocs = Arrays.asList(locations.split(","));
 		List<Integer> intShipLocs = new ArrayList<Integer>();

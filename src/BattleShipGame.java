@@ -171,6 +171,7 @@ public class BattleShipGame {
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
 				}
+				sentMessage = false;
 			}
 		}
 	}

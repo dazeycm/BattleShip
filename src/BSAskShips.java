@@ -2,8 +2,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,14 +51,33 @@ public class BSAskShips extends JPanel {
 		this.setBackground(new Color(84, 84, 84));
 		clickedButtons = new ArrayList<BSButton>();
 
-		errorText.setBounds(20, 650, 600, 30);
+		errorText.setBounds(20, 645, 600, 30);
 		errorText.setFont(new Font("Impact", Font.PLAIN, 17));
 		errorText.setForeground(new Color(221, 221, 221));
 		this.add(errorText);
 
+		initHelpButton();
 		initGridButtons();
 		intitShipButtons();
 		initFrame();
+	}
+	
+	public void initHelpButton() {
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/Resources/help.png"));
+		} catch (IOException e) {
+			System.out.println("Error getting image");
+			e.printStackTrace();
+		}
+		JButton helpButton = new JButton(new ImageIcon(image));
+		helpButton.setBackground(new Color(84, 84, 84));
+		helpButton.setBounds(470, 620, 30, 30);
+		helpButton.setOpaque(true);
+		helpButton.setBorderPainted(false);
+		helpButton.setToolTipText("<html>Click the spaces where you want your ship to be, and then press the corresponding ship button.<br> Hover over a ship to see how many spaces it occupies.</html>");
+		
+		this.add(helpButton);
 	}
 
 	/**
@@ -313,8 +336,8 @@ public class BSAskShips extends JPanel {
 						shipPlaceCount++;
 					}
 				}
-			} else {
-				errorText.setText("Invalid ship placement!");
+			} else if (clickedButtons.size() == 0) {
+				errorText.setText("Select where you want to place the ship before clicking this button!");
 			}
 
 			if (shipPlaceCount == 5) {
@@ -395,5 +418,12 @@ public class BSAskShips extends JPanel {
 
 		initGridButtons();
 		intitShipButtons();
+	}
+	
+	public static void main(String[] args)	{
+		BattleShipClient bsc = new BattleShipClient();
+		bsc.name = "Craig";
+		bsc.opponentName = "Nora";
+		BSAskShips as = new BSAskShips(bsc);
 	}
 }

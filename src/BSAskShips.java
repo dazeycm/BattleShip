@@ -142,6 +142,12 @@ public class BSAskShips extends JPanel {
 		submarine.setBounds(60, 560, 145, 40);
 		cruiser.setBounds(310, 510, 145, 40);
 		patrol.setBounds(60, 510, 145, 40);
+		
+		carrier.setToolTipText("5 Spaces");
+		battleship.setToolTipText("4 Spaces");
+		submarine.setToolTipText("3 Spaces");
+		cruiser.setToolTipText("3 Spaces");
+		patrol.setToolTipText("2 Spaces");
 
 		carrier.addActionListener(br);
 		battleship.addActionListener(br);

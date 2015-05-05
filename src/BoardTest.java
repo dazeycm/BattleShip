@@ -14,7 +14,7 @@ import org.junit.Test;
  * @date 05/07/15
  * @description BoardTest is a JUnit Test Case to test the methods in the class
  *              Board partitioned to check correct and incorrect states of the
- *              game
+ *              board
  */
 
 public class BoardTest {

@@ -436,8 +436,8 @@ public class BattleShipGame {
 				}
 				sentMessage = false;
 			}
-			System.out.println("Game over homie");
 		}
+		System.out.println("Game over homie");
 	}
 
 	/**

@@ -58,7 +58,7 @@ public class BSAskShips extends JPanel {
 			e.printStackTrace();
 		}
 		// play from the beginning
-		// mp3 = new MP3();
+		mp3 = new MP3();
 		mp3.play("sound/starwars.mp3");
 		this.client = client;
 		this.setLayout(null);

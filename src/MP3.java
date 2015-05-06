@@ -1,4 +1,5 @@
 import java.io.BufferedInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -8,6 +9,7 @@ public class MP3 {
 	private String filename;
 	private Player player;
 	public BufferedInputStream bis;
+	public Thread t;
 
 	// constructor that takes the name of an MP3 file
 	public MP3() {
@@ -30,9 +32,7 @@ public class MP3 {
 			// FileInputStream fis = new FileInputStream(filename);
 
 			bis = new BufferedInputStream(stream);
-			// stream.close();
-			player = new Player(bis);
-			// bis.close();
+			this.player = new Player(bis);
 
 		} catch (Exception e) {
 			// System.out.println("Problem playing file " + filename);

@@ -36,6 +36,7 @@ public class GameBoard extends JPanel {
 	private JLabel errorText;
 	private JLabel yourBoard;
 	private JLabel theirBoard;
+	private JLabel turn;
 
 	/**
 	 * Preconditions: client and locations are not NULL Postconditions: creates
@@ -61,6 +62,7 @@ public class GameBoard extends JPanel {
 		initErrorText();
 		initMyGridButtons();
 		initMyShotButtons();
+		initTurn();
 
 		List<String> locs = Arrays.asList(locations.split("&"));
 		ArrayList<Integer> intLocs = new ArrayList<Integer>();
@@ -73,6 +75,15 @@ public class GameBoard extends JPanel {
 		}
 
 		initFrame();
+	}
+	
+	public void initTurn() {
+		turn = new JLabel("Turn: Yours");
+		turn.setBounds(800,  630, 300, 40);
+		turn.setFont(new Font("Impact", Font.PLAIN, 35));
+		turn.setForeground(new Color(221, 221, 221));
+		this.add(turn);
+		
 	}
 
 	public void initExampleButtons() {
@@ -255,7 +266,7 @@ public class GameBoard extends JPanel {
 	 * Side Effects: creates a new JFrame object and modifies it
 	 */
 	void initFrame() {
-		frame = new JFrame("Best of luck, " + client.name + "!");
+		frame = new JFrame("May the force be with you, " + client.name + "!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 1100, 800);
@@ -280,6 +291,7 @@ public class GameBoard extends JPanel {
 				button.setOpaque(true);
 				button.setBorderPainted(false);
 				log("Your opponent shot and hit");
+				turn.setText("Turn: Yours");
 				repaint();
 			}
 		}
@@ -300,6 +312,7 @@ public class GameBoard extends JPanel {
 				button.setOpaque(true);
 				button.setBorderPainted(false);
 				log("Your opponent shot and missed");
+				turn.setText("Turn: Yours");
 				repaint();
 			}
 		}
@@ -435,6 +448,7 @@ public class GameBoard extends JPanel {
 					button.clicked();
 					button.makeUnclickable();
 					repaint();
+					turn.setText("Turn: Opponent's");
 					client.sendMessage(Protocol.CURSE + button.butNum);
 				}
 			}

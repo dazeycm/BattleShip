@@ -75,9 +75,9 @@ public class BattleShipClient {
 		try {
 			return this.input.readLine();
 		} catch (IOException e) {
+			System.exit(0);
 			System.out.println("Error when client tried to read message");
 			e.printStackTrace();
-			System.exit(0);
 		}
 		return null;
 	}

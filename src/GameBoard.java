@@ -240,6 +240,15 @@ public class GameBoard extends JPanel {
 			id++;
 		}
 	}
+	
+	/**
+	 * Preconditions: none Postconditions: makes the frame not visible Side
+	 * Effects: calls setVisible and dispose
+	 */
+	void kill() {
+		frame.setVisible(false);
+		frame.dispose();
+	}
 
 	/**
 	 * Preconditions: none Postconditions: creates a game frame for the player

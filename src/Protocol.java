@@ -72,11 +72,15 @@ public class Protocol {
 	/**
 	 * This is the stats message
 	 */
-	public static final String HOOCH = "HOOCH";
+	public static final String HOOCH = "HOOCH ";
 	/**
 	 * This is the winner message
 	 */
-	public static final String WINNER = "WINNER";
+	public static final String WINNER = "WINNER ";
+	/**
+	 * This is the winner message
+	 */
+	public static final String LOSER = "LOSER ";
 	/**
 	 * This is the score message
 	 */
@@ -92,7 +96,7 @@ public class Protocol {
 	/**
 	 * This is the accuracy message
 	 */
-	public static final String ACCURACY = "ACCURACY";
+	public static final String ACCURACY = "ACCURACY ";
 	/**
 	 * This is the "we're starting the game message"
 	 */

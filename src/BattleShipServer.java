@@ -21,8 +21,20 @@ public class BattleShipServer {
 	ServerThread player1;
 	ServerThread player2;
 	ServerSocket ss = null;
-	static BattleShipGame bsg;
+	BattleShipGame bsg;
+	boolean playAnother = true;
 
+	public BattleShipServer() {
+		getClients();
+		do{
+			bsg = new BattleShipGame(player1, player2, this);
+			bsg.askForNames();
+			bsg.getShips();
+			bsg.playGame();
+		} while(playAnother);
+		System.exit(0);
+	}
+	
 	/**
 	 * Preconditions: none Postconditions: creates the clients and all the
 	 * networking jazz Side Effects: creates ServerSocket and ServerThread
@@ -56,8 +68,6 @@ public class BattleShipServer {
 
 		player1.start();
 		player2.start();
-
-		BattleShipServer.bsg = new BattleShipGame(player1, player2);
 	}
 
 	/**
@@ -66,10 +76,6 @@ public class BattleShipServer {
 	 */
 	public static void main(String[] args) {
 		BattleShipServer bss = new BattleShipServer();
-		bss.getClients();
-		bsg.askForNames();
-		bsg.getShips();
-		bsg.playGame();
 	}
 }
 

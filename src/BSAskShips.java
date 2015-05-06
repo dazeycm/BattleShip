@@ -80,7 +80,7 @@ public class BSAskShips extends JPanel {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(
-					"/Resources/help.png"));
+					"/images/help.png"));
 		} catch (IOException e) {
 			System.out.println("Error getting image");
 			e.printStackTrace();
@@ -213,7 +213,6 @@ public class BSAskShips extends JPanel {
 	 * Effects: calls setVisible and dispose
 	 */
 	void kill() {
-		System.out.println("In kill method");
 		try {
 			mp3.close();
 		} catch (IOException e) {
@@ -222,7 +221,6 @@ public class BSAskShips extends JPanel {
 		}
 		frame.setVisible(false);
 		frame.dispose();
-
 	}
 
 	/**

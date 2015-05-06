@@ -77,6 +77,7 @@ public class BattleShipClient {
 		} catch (IOException e) {
 			System.out.println("Error when client tried to read message");
 			e.printStackTrace();
+			System.exit(0);
 		}
 		return null;
 	}
@@ -105,9 +106,13 @@ public class BattleShipClient {
 		BSAskName askName = null;
 		GameBoard gb = null;
 		BSAskShips getShips = null;
+		GameOver go = null;
+		
 		while (true) {
 			String message = bsc.readLine();
 			if (message.contains(Protocol.ALBUS)) {
+				if(go != null)
+					go.kill();
 				askName = new BSAskName(bsc);
 			} else if (message.contains(Protocol.VOLDY)) {
 				getShips = new BSAskShips(bsc);
@@ -149,6 +154,9 @@ public class BattleShipClient {
 			} else if (message.contains(Protocol.POLYJUICE)) {
 				List<String> parts = Arrays.asList(message.split(" "));
 				bsc.opponentName = parts.get(1);
+			} else if (message.contains(Protocol.HOOCH)) {
+				gb.kill();
+				go = new GameOver(message, bsc);
 			}
 		}
 	}

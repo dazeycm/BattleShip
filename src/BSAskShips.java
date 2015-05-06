@@ -49,7 +49,7 @@ public class BSAskShips extends JPanel {
 	public BSAskShips(BattleShipClient client) {
 		// play sound effect
 		MP3 mp3 = new MP3();
-		mp3.play("sound/intro.mp3");
+		mp3.play("sound/starwars.mp3");
 		// when the computation is done, stop playing it
 		try {
 			mp3.close();
@@ -59,7 +59,7 @@ public class BSAskShips extends JPanel {
 		}
 		// play from the beginning
 		// mp3 = new MP3();
-		mp3.play("sound/intro.mp3");
+		mp3.play("sound/starwars.mp3");
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));

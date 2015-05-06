@@ -38,7 +38,6 @@ public class ForCraigsSanity {
 			try {
 				BattleShipClient.main(args);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

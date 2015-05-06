@@ -395,7 +395,7 @@ public class GameBoard extends JPanel {
 		BattleShipClient bsc = new BattleShipClient();
 		bsc.name = "Craig";
 		bsc.opponentName = "Nora";
-		GameBoard gb = new GameBoard(bsc, "0");
+		new GameBoard(bsc, "0");
 	}
 
 	/**

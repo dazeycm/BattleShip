@@ -451,6 +451,6 @@ public class BSAskShips extends JPanel {
 		BattleShipClient bsc = new BattleShipClient();
 		bsc.name = "Craig";
 		bsc.opponentName = "Nora";
-		BSAskShips as = new BSAskShips(bsc);
+		new BSAskShips(bsc);
 	}
 }

@@ -103,7 +103,6 @@ public class BattleShipClient {
 	 */
 	public static void main(String[] args) throws IOException {
 		BattleShipClient bsc = new BattleShipClient();
-		BSAskName askName = null;
 		GameBoard gb = null;
 		BSAskShips getShips = null;
 		GameOver go = null;
@@ -113,7 +112,7 @@ public class BattleShipClient {
 			if (message.contains(Protocol.ALBUS)) {
 				if (go != null)
 					go.kill();
-				askName = new BSAskName(bsc);
+				new BSAskName(bsc);
 			} else if (message.contains(Protocol.VOLDY)) {
 				getShips = new BSAskShips(bsc);
 			} else if (message.contains(Protocol.POTTER)) {

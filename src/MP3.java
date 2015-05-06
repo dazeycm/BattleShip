@@ -5,7 +5,6 @@ import java.io.InputStream;
 import javazoom.jl.player.Player;
 
 public class MP3 {
-	private String filename;
 	private Player player;
 	public BufferedInputStream bis;
 
@@ -27,15 +26,10 @@ public class MP3 {
 			InputStream stream = MP3.class.getClassLoader()
 					.getResourceAsStream(filename);
 
-			// FileInputStream fis = new FileInputStream(filename);
-
 			bis = new BufferedInputStream(stream);
-			// stream.close();
 			player = new Player(bis);
-			// bis.close();
 
 		} catch (Exception e) {
-			// System.out.println("Problem playing file " + filename);
 			System.out.println(e);
 		}
 

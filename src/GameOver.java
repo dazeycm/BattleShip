@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
  *              show statistics
  */
 public class GameOver extends JPanel {
+	private static final long serialVersionUID = -7678557956903171235L;
 	private JFrame frame;
 	private BattleShipClient bsc;
 

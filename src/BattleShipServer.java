@@ -32,6 +32,7 @@ public class BattleShipServer {
 			bsg.getShips();
 			bsg.playGame();
 		} while(playAnother);
+		System.exit(0);
 	}
 	
 	/**

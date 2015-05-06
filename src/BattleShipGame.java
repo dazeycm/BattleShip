@@ -111,6 +111,7 @@ public class BattleShipGame {
 
 		boolean sentMessage = false;
 
+		beforewhile:
 		while (!gameOver) {
 			if (player1GoesFirst) {
 				String loc = player1.receiveMessage();
@@ -149,7 +150,7 @@ public class BattleShipGame {
 									    + Protocol.ACCURACY
 									    + player2Hits);
 								gameOver = true;
-								break;
+								break beforewhile;
 							}
 							// play sound effect
 							MP3 mp3 = new MP3();
@@ -193,7 +194,7 @@ public class BattleShipGame {
 							+ butNum);
 					player1Shots++;
 				}
-
+				
 				loc = player2.receiveMessage();
 				butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
 				sentMessage = false;
@@ -230,7 +231,7 @@ public class BattleShipGame {
 									    + Protocol.ACCURACY
 									    + player2Hits);
 								gameOver = true;
-								break;
+								break beforewhile;
 							}
 							// play sound effect
 							MP3 mp3 = new MP3();
@@ -313,7 +314,7 @@ public class BattleShipGame {
 									    + Protocol.ACCURACY
 									    + player2Hits);
 								gameOver = true;
-								break;
+								break beforewhile;
 							}
 							// play sound effect
 							MP3 mp3 = new MP3();
@@ -394,7 +395,7 @@ public class BattleShipGame {
 									    + Protocol.ACCURACY
 									    + player2Hits);
 								gameOver = true;
-								break;
+								break beforewhile;
 							}
 							// play sound effect
 							MP3 mp3 = new MP3();
@@ -441,16 +442,25 @@ public class BattleShipGame {
 				sentMessage = false;
 			}
 		}
-		while(!player1.receiveMessage().equals(Protocol.YES) || !player1.receiveMessage().equals(Protocol.NO))	{
-			while(!player2.receiveMessage().equals(Protocol.YES) || !player2.receiveMessage().equals(Protocol.NO))	{
-				System.out.println("Waiting for yes or no");
-			}
-		}
-		if(!(player1.receiveMessage().equals(Protocol.YES) && player2.receiveMessage().equals(Protocol.YES)))	{
-			bss.playAnother = false;
-			System.out.println("Not playing another");
+		
+		String player1Message;
+		String player2Message;
+		do{
+			player1Message = player1.receiveMessage();
+		} while (!player1Message.equals(Protocol.YES) && !player1Message.equals(Protocol.NO));
+		
+		do{
+			player2Message = player2.receiveMessage();
+		} while (!player2Message.equals(Protocol.YES) && !player2Message.equals(Protocol.NO));
+		
+		System.out.println(player1Message);
+		System.out.println(player2Message);
+		
+		if(player1Message.equals(Protocol.YES) && player2Message.equals(Protocol.YES))	{
+			System.out.println("playing another");
 		} else {
-			System.out.println("Playing another");
+			bss.playAnother = false;
+			System.exit(0);
 		}
 	}
 

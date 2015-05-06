@@ -80,7 +80,7 @@ public class BSAskShips extends JPanel {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(
-					"/resources/help.png"));
+					"/images/help.png"));
 		} catch (IOException e) {
 			System.out.println("Error getting image");
 			e.printStackTrace();

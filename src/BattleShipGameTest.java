@@ -27,10 +27,11 @@ public class BattleShipGameTest {
 	static BattleShipGame bsg;
 	public Board player1Board;
 	public Board player2Board;
+	public static BattleShipServer bss;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		//bsg = new BattleShipGame(player1, player2);
+		bsg = new BattleShipGame(player1, player2, bss);
 	}
 
 	@Test
@@ -39,7 +40,6 @@ public class BattleShipGameTest {
 	// BattleShipGame
 	// is correctly instantiated with the ServerThreads
 	public void BattleShipGameConstructorTest() {
-		//bsg = new BattleShipGame(player1, player2);
 		assertEquals(bsg.player1, player1);
 		assertEquals(bsg.player2, player2);
 	}
@@ -51,7 +51,6 @@ public class BattleShipGameTest {
 	// BattleShipGame
 	// is correctly instantiated with the ServerThreads
 	public void BattleShipGameConstructorInvalidTest() {
-		//bsg = new BattleShipGame(player1, player1);
 		assertEquals(bsg.player1, player1);
 		assertEquals(bsg.player2, player1);
 	}

@@ -76,7 +76,7 @@ public class BSAskName extends JPanel {
 	 * Side Effects: Creates a new JFrame object
 	 */
 	void initFrame() {
-		frame = new JFrame("Welcome to BattleShip!");
+		frame = new JFrame("Welcome to the frontline, solider!!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 400, 200);

@@ -35,6 +35,7 @@ public class BSAskShips extends JPanel {
 	JLabel errorText = new JLabel();
 	int shipPlaceCount;
 	private BattleShipClient client;
+	MP3 mp3 = new MP3();
 
 	/**
 	 * 
@@ -46,6 +47,19 @@ public class BSAskShips extends JPanel {
 	 *            in the game
 	 */
 	public BSAskShips(BattleShipClient client) {
+		// play sound effect
+		MP3 mp3 = new MP3();
+		mp3.play("sound/intro.mp3");
+		// when the computation is done, stop playing it
+		try {
+			mp3.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// play from the beginning
+		// mp3 = new MP3();
+		mp3.play("sound/intro.mp3");
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(84, 84, 84));
@@ -61,11 +75,12 @@ public class BSAskShips extends JPanel {
 		intitShipButtons();
 		initFrame();
 	}
-	
+
 	public void initHelpButton() {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream("/Resources/help.png"));
+			image = ImageIO.read(getClass().getResourceAsStream(
+					"/Resources/help.png"));
 		} catch (IOException e) {
 			System.out.println("Error getting image");
 			e.printStackTrace();
@@ -75,8 +90,9 @@ public class BSAskShips extends JPanel {
 		helpButton.setBounds(470, 620, 30, 30);
 		helpButton.setOpaque(true);
 		helpButton.setBorderPainted(false);
-		helpButton.setToolTipText("<html>Click the spaces where you want your ship to be, and then press the corresponding ship button.<br> Hover over a ship to see how many spaces it occupies.</html>");
-		
+		helpButton
+				.setToolTipText("<html>Click the spaces where you want your ship to be, and then press the corresponding ship button.<br> Hover over a ship to see how many spaces it occupies.</html>");
+
 		this.add(helpButton);
 	}
 
@@ -142,7 +158,7 @@ public class BSAskShips extends JPanel {
 		submarine.setBounds(60, 560, 145, 40);
 		cruiser.setBounds(310, 510, 145, 40);
 		patrol.setBounds(60, 510, 145, 40);
-		
+
 		carrier.setToolTipText("5 Spaces");
 		battleship.setToolTipText("4 Spaces");
 		submarine.setToolTipText("3 Spaces");
@@ -197,8 +213,16 @@ public class BSAskShips extends JPanel {
 	 * Effects: calls setVisible and dispose
 	 */
 	void kill() {
+		System.out.println("In kill method");
+		try {
+			mp3.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		frame.setVisible(false);
 		frame.dispose();
+
 	}
 
 	/**
@@ -343,7 +367,8 @@ public class BSAskShips extends JPanel {
 					}
 				}
 			} else if (clickedButtons.size() == 0) {
-				errorText.setText("Select where you want to place the ship before clicking this button!");
+				errorText
+						.setText("Select where you want to place the ship before clicking this button!");
 			}
 
 			if (shipPlaceCount == 5) {
@@ -425,8 +450,8 @@ public class BSAskShips extends JPanel {
 		initGridButtons();
 		intitShipButtons();
 	}
-	
-	public static void main(String[] args)	{
+
+	public static void main(String[] args) {
 		BattleShipClient bsc = new BattleShipClient();
 		bsc.name = "Craig";
 		bsc.opponentName = "Nora";

@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,8 +37,9 @@ public class BSAskName extends JPanel {
 	 * @param client
 	 *            a BattleShipClient object that represents one of the players
 	 *            in the game
+	 * @throws IOException
 	 */
-	public BSAskName(final BattleShipClient client) {
+	public BSAskName(final BattleShipClient client) throws IOException {
 		this.client = client;
 		this.setLayout(null);
 		this.setBackground(new Color(50, 200, 200));

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * 
  * @author Craig Dazey and Nora Husani
@@ -33,7 +35,12 @@ public class ForCraigsSanity {
 	public static class RunClient implements Runnable {
 		public void run() {
 			String[] args = new String[0];
-			BattleShipClient.main(args);
+			try {
+				BattleShipClient.main(args);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

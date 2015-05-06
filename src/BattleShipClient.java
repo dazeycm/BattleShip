@@ -97,8 +97,10 @@ public class BattleShipClient {
 	 * Preconditions: none Postconditions: calls methods based on the message
 	 * type according to the grammar Side Effects: creates new BSAskName,
 	 * BSAskShips, and GameBoard objects
+	 * 
+	 * @throws IOException
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		BattleShipClient bsc = new BattleShipClient();
 		BSAskName askName = null;
 		GameBoard gb = null;
@@ -120,7 +122,8 @@ public class BattleShipClient {
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
-					gb.log("Your opponent sunk your " + Protocol.normalizeShipName(parts.get(4) + " "));
+					gb.log("Your opponent sunk your "
+							+ Protocol.normalizeShipName(parts.get(4) + " "));
 				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
@@ -134,7 +137,8 @@ public class BattleShipClient {
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
-					gb.log("You sunk your opponent's " + Protocol.normalizeShipName(parts.get(4) + " "));
+					gb.log("You sunk your opponent's "
+							+ Protocol.normalizeShipName(parts.get(4) + " "));
 				} else if (message.contains(Protocol.CRUCIO)) {
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);

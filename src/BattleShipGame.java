@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +58,7 @@ public class BattleShipGame {
 		name = player2.receiveMessage();
 		name = name.substring(name.indexOf(" ") + 1);
 		player2.name = name;
-		
+
 		player1.sendMessage(Protocol.POLYJUICE + player2.name);
 		player2.sendMessage(Protocol.POLYJUICE + player1.name);
 	}
@@ -92,7 +93,7 @@ public class BattleShipGame {
 		int max = 10;
 		int min = 0;
 		int chance = rnJesus.nextInt(max - min + 1) + min;
-		if(chance < 5) {
+		if (chance < 5) {
 			player1GoesFirst = false;
 		}
 
@@ -112,6 +113,19 @@ public class BattleShipGame {
 						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							// play sound effect
+							MP3 mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
+							// when the computation is done, stop playing it
+							try {
+								mp3.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							// play from the beginning
+							mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
 							System.out.println("Ship sunk!");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
@@ -148,6 +162,19 @@ public class BattleShipGame {
 						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							// play sound effect
+							MP3 mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
+							// when the computation is done, stop playing it
+							try {
+								mp3.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							// play from the beginning
+							mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
 							System.out.println("Ship sunk!");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
@@ -175,9 +202,10 @@ public class BattleShipGame {
 							+ butNum);
 				}
 				sentMessage = false;
-			} else 	{
+			} else {
 				String loc = player2.receiveMessage();
-				int butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
+				int butNum = Integer
+						.parseInt(loc.substring(loc.indexOf(" ") + 1));
 				sentMessage = false;
 
 				for (Entry<String, Ship> entry : player1Board.ships.entrySet()) {
@@ -185,6 +213,19 @@ public class BattleShipGame {
 						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							// play sound effect
+							MP3 mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
+							// when the computation is done, stop playing it
+							try {
+								mp3.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							// play from the beginning
+							mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
 							System.out.println("Ship sunk!");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
@@ -211,10 +252,9 @@ public class BattleShipGame {
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
 				}
-				
+
 				loc = player1.receiveMessage();
-				butNum = Integer
-						.parseInt(loc.substring(loc.indexOf(" ") + 1));
+				butNum = Integer.parseInt(loc.substring(loc.indexOf(" ") + 1));
 				sentMessage = false;
 
 				for (Entry<String, Ship> entry : player2Board.ships.entrySet()) {
@@ -222,6 +262,19 @@ public class BattleShipGame {
 						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							// play sound effect
+							MP3 mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
+							// when the computation is done, stop playing it
+							try {
+								mp3.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							// play from the beginning
+							mp3 = new MP3();
+							mp3.play("sound/sunk.mp3");
 							System.out.println("Ship sunk!");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "

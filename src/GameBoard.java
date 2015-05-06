@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -261,6 +262,7 @@ public class GameBoard extends JPanel {
 	 * 
 	 * @param butNum
 	 *            an int that represents the button on the game grid
+	 * @throws IOException
 	 */
 	public void hitShip(int butNum) {
 		for (BSButton button : myBoard) {
@@ -310,6 +312,19 @@ public class GameBoard extends JPanel {
 				button.setBorderPainted(false);
 				log("You hit");
 				repaint();
+				// play sound effect
+				MP3 mp3 = new MP3();
+				mp3.play("sound/hit.mp3");
+				// when the computation is done, stop playing it
+				try {
+					mp3.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// play from the beginning
+				mp3 = new MP3();
+				mp3.play("sound/hit.mp3");
 			}
 		}
 	}
@@ -330,6 +345,19 @@ public class GameBoard extends JPanel {
 				button.setBorderPainted(false);
 				log("You missed");
 				repaint();
+				// play sound effect
+				MP3 mp3 = new MP3();
+				mp3.play("sound/miss.mp3");
+				// when the computation is done, stop playing it
+				try {
+					mp3.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// play from the beginning
+				mp3 = new MP3();
+				mp3.play("sound/miss.mp3");
 			}
 		}
 	}

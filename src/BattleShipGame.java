@@ -15,6 +15,8 @@ import java.util.Random;
  *              game of battleship
  */
 public class BattleShipGame {
+	
+	private BattleShipServer bss;
 
 	public ServerThread player1;
 	public ServerThread player2;
@@ -39,10 +41,12 @@ public class BattleShipGame {
 	 * @param player2
 	 *            a ServerThread that is used for the second player
 	 */
-	public BattleShipGame(ServerThread player1, ServerThread player2) {
+	public BattleShipGame(ServerThread player1, ServerThread player2, BattleShipServer bss) {
 		this.player1 = player1;
 		this.player2 = player2;
 
+		this.bss = bss;
+		
 		player1Board = new Board();
 		player2Board = new Board();
 	}
@@ -126,7 +130,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -138,7 +142,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -207,7 +211,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -219,7 +223,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -290,7 +294,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -302,7 +306,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -371,7 +375,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -383,7 +387,7 @@ public class BattleShipGame {
 										+ player1.name + " "
 										+ player1Shots + " "
 										+ Protocol.ACCURACY
-										+ player1Hits
+										+ player1Hits + " "
 										+ Protocol.SHOTS_P2
 										+ player2.name + " "
 									    + player2Shots + " "
@@ -437,7 +441,17 @@ public class BattleShipGame {
 				sentMessage = false;
 			}
 		}
-		System.out.println("Game over homie");
+		while(!player1.receiveMessage().equals(Protocol.YES) || !player1.receiveMessage().equals(Protocol.NO))	{
+			while(!player2.receiveMessage().equals(Protocol.YES) || !player2.receiveMessage().equals(Protocol.NO))	{
+				System.out.println("Waiting for yes or no");
+			}
+		}
+		if(!(player1.receiveMessage().equals(Protocol.YES) && player2.receiveMessage().equals(Protocol.YES)))	{
+			bss.playAnother = false;
+			System.out.println("Not playing another");
+		} else {
+			System.out.println("Playing another");
+		}
 	}
 
 	/**

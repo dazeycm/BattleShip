@@ -150,6 +150,7 @@ public class BattleShipClient {
 				List<String> parts = Arrays.asList(message.split(" "));
 				bsc.opponentName = parts.get(1);
 			} else if (message.contains(Protocol.HOOCH)) {
+				gb.kill();
 				System.out.println(message);
 			}
 		}

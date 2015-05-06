@@ -78,6 +78,10 @@ public class Protocol {
 	 */
 	public static final String WINNER = "WINNER";
 	/**
+	 * This is the winner message
+	 */
+	public static final String LOSER = "LOSER";
+	/**
 	 * This is the score message
 	 */
 	public static final String SCORE = "SCORE ";

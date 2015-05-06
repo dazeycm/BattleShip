@@ -107,11 +107,11 @@ public class BattleShipClient {
 		GameBoard gb = null;
 		BSAskShips getShips = null;
 		GameOver go = null;
-		
+
 		while (true) {
 			String message = bsc.readLine();
 			if (message.contains(Protocol.ALBUS)) {
-				if(go != null)
+				if (go != null)
 					go.kill();
 				askName = new BSAskName(bsc);
 			} else if (message.contains(Protocol.VOLDY)) {
@@ -125,6 +125,18 @@ public class BattleShipClient {
 				int location;
 				List<String> parts = Arrays.asList(message.split(" "));
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
+					// play sound effect
+					MP3 mp3 = new MP3();
+					mp3.play("sound/sunk.mp3");
+					// when the computation is done, stop playing it
+					try {
+						mp3.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					// play from the beginning
+					mp3 = new MP3();
+					mp3.play("sound/sunk.mp3");
 					location = Integer.parseInt(parts.get(2));
 					gb.hitShip(location);
 					gb.log("Your opponent sunk your "
@@ -140,6 +152,18 @@ public class BattleShipClient {
 				int location;
 				List<String> parts = Arrays.asList(message.split(" "));
 				if (message.contains(Protocol.AVADAKEDAVRA)) {
+					// play sound effect
+					MP3 mp3 = new MP3();
+					mp3.play("sound/sunk.mp3");
+					// when the computation is done, stop playing it
+					try {
+						mp3.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					// play from the beginning
+					mp3 = new MP3();
+					mp3.play("sound/sunk.mp3");
 					location = Integer.parseInt(parts.get(2));
 					gb.iHitShip(location);
 					gb.log("You sunk your opponent's "

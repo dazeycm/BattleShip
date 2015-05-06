@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,6 +51,18 @@ public class GameOver extends JPanel {
 	 *            a BattleShipClient that represents the player
 	 */
 	public GameOver(String stats, BattleShipClient bsc) {
+		// play sound effect
+		MP3 mp3 = new MP3();
+		mp3.play("sound/gameover.mp3");
+		// when the computation is done, stop playing it
+		try {
+			mp3.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// play from the beginning
+		mp3 = new MP3();
+		mp3.play("sound/gameover.mp3");
 		this.setLayout(null);
 		this.stats = stats;
 		this.setBackground(new Color(50, 200, 200));

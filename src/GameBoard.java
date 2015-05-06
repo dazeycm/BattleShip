@@ -240,7 +240,7 @@ public class GameBoard extends JPanel {
 			id++;
 		}
 	}
-	
+
 	/**
 	 * Preconditions: none Postconditions: makes the frame not visible Side
 	 * Effects: calls setVisible and dispose
@@ -328,7 +328,6 @@ public class GameBoard extends JPanel {
 				try {
 					mp3.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				// play from the beginning
@@ -361,7 +360,6 @@ public class GameBoard extends JPanel {
 				try {
 					mp3.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				// play from the beginning

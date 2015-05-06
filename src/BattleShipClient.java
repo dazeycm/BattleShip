@@ -149,6 +149,8 @@ public class BattleShipClient {
 			} else if (message.contains(Protocol.POLYJUICE)) {
 				List<String> parts = Arrays.asList(message.split(" "));
 				bsc.opponentName = parts.get(1);
+			} else if (message.contains(Protocol.HOOCH)) {
+				System.out.println(message);
 			}
 		}
 	}

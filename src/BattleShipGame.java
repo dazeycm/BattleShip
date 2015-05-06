@@ -21,6 +21,11 @@ public class BattleShipGame {
 
 	public Board player1Board;
 	public Board player2Board;
+	
+	public int player1Shots;
+	public int player1Hits;
+	public int player2Shots;
+	public int player2Hits;
 
 	public boolean gameOver = false;
 
@@ -110,9 +115,38 @@ public class BattleShipGame {
 
 				for (Entry<String, Ship> entry : player2Board.ships.entrySet()) {
 					if (entry.getValue().locs.contains(butNum)) {
-						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							if(player2Board.numShipsReamining() == 0)	{
+								player1Shots++;
+								player1Hits++;
+								player1.sendMessage(Protocol.HOOCH 
+										+ Protocol.WINNER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								player2.sendMessage(Protocol.HOOCH 
+										+ Protocol.LOSER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								gameOver = true;
+								break;
+							}
 							// play sound effect
 							MP3 mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
@@ -126,13 +160,14 @@ public class BattleShipGame {
 							// play from the beginning
 							mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
-							System.out.println("Ship sunk!");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum + " " + Protocol.AVADAKEDAVRA
 									+ entry.getKey());
+							player1Shots++;
+							player1Hits++;
 							sentMessage = true;
 							break;
 						} else {
@@ -140,17 +175,19 @@ public class BattleShipGame {
 									+ Protocol.CRUCIO + butNum);
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum);
+							player1Shots++;
+							player1Hits++;
 							sentMessage = true;
 							break;
 						}
 					}
 				}
 				if (!sentMessage) {
-					System.out.println("It's a miss!");
 					player2.sendMessage(Protocol.AUROR + Protocol.STUPEFY
 							+ butNum);
 					player1.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
+					player1Shots++;
 				}
 
 				loc = player2.receiveMessage();
@@ -159,9 +196,38 @@ public class BattleShipGame {
 
 				for (Entry<String, Ship> entry : player1Board.ships.entrySet()) {
 					if (entry.getValue().locs.contains(butNum)) {
-						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							if(player1Board.numShipsReamining() == 0)	{
+								player2Shots++;
+								player2Hits++;
+								player1.sendMessage(Protocol.HOOCH 
+										+ Protocol.LOSER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								player2.sendMessage(Protocol.HOOCH 
+										+ Protocol.WINNER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								gameOver = true;
+								break;
+							}
 							// play sound effect
 							MP3 mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
@@ -175,13 +241,14 @@ public class BattleShipGame {
 							// play from the beginning
 							mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
-							System.out.println("Ship sunk!");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
 							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum + " " + Protocol.AVADAKEDAVRA
 									+ entry.getKey());
+							player2Shots++;
+							player2Hits++;
 							sentMessage = true;
 							break;
 						} else {
@@ -189,17 +256,19 @@ public class BattleShipGame {
 									+ Protocol.CRUCIO + butNum);
 							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum);
+							player2Shots++;
+							player2Hits++;
 							sentMessage = true;
 							break;
 						}
 					}
 				}
 				if (!sentMessage) {
-					System.out.println("It's a miss!");
 					player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY
 							+ butNum);
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
+					player2Shots++;
 				}
 				sentMessage = false;
 			} else {
@@ -210,9 +279,38 @@ public class BattleShipGame {
 
 				for (Entry<String, Ship> entry : player1Board.ships.entrySet()) {
 					if (entry.getValue().locs.contains(butNum)) {
-						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							if(player1Board.numShipsReamining() == 0)	{
+								player2Shots++;
+								player2Hits++;
+								player1.sendMessage(Protocol.HOOCH 
+										+ Protocol.LOSER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								player2.sendMessage(Protocol.HOOCH 
+										+ Protocol.WINNER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								gameOver = true;
+								break;
+							}
 							// play sound effect
 							MP3 mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
@@ -226,13 +324,14 @@ public class BattleShipGame {
 							// play from the beginning
 							mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
-							System.out.println("Ship sunk!");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
 							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum + " " + Protocol.AVADAKEDAVRA
 									+ entry.getKey());
+							player2Shots++;
+							player2Hits++;
 							sentMessage = true;
 							break;
 						} else {
@@ -240,17 +339,19 @@ public class BattleShipGame {
 									+ Protocol.CRUCIO + butNum);
 							player2.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum);
+							player2Shots++;
+							player2Hits++;
 							sentMessage = true;
 							break;
 						}
 					}
 				}
 				if (!sentMessage) {
-					System.out.println("It's a miss!");
 					player1.sendMessage(Protocol.AUROR + Protocol.STUPEFY
 							+ butNum);
 					player2.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
+					player2Shots++;
 				}
 
 				loc = player1.receiveMessage();
@@ -259,9 +360,38 @@ public class BattleShipGame {
 
 				for (Entry<String, Ship> entry : player2Board.ships.entrySet()) {
 					if (entry.getValue().locs.contains(butNum)) {
-						System.out.println("It's a hit!");
 						entry.getValue().shipHit();
 						if (entry.getValue().isSunk()) {
+							if(player2Board.numShipsReamining() == 0)	{
+								player1Shots++;
+								player1Hits++;
+								player1.sendMessage(Protocol.HOOCH 
+										+ Protocol.WINNER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								player2.sendMessage(Protocol.HOOCH 
+										+ Protocol.LOSER 
+										+ Protocol.SHOTS_P1 
+										+ player1.name + " "
+										+ player1Shots + " "
+										+ Protocol.ACCURACY
+										+ player1Hits
+										+ Protocol.SHOTS_P2
+										+ player2.name + " "
+									    + player2Shots + " "
+									    + Protocol.ACCURACY
+									    + player2Hits);
+								gameOver = true;
+								break;
+							}
 							// play sound effect
 							MP3 mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
@@ -275,13 +405,14 @@ public class BattleShipGame {
 							// play from the beginning
 							mp3 = new MP3();
 							mp3.play("sound/sunk.mp3");
-							System.out.println("Ship sunk!");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum + " " + Protocol.AVADAKEDAVRA
 									+ entry.getKey());
+							player1Shots++;
+							player1Hits++;
 							sentMessage = true;
 							break;
 						} else {
@@ -289,20 +420,23 @@ public class BattleShipGame {
 									+ Protocol.CRUCIO + butNum);
 							player1.sendMessage(Protocol.RON + Protocol.CRUCIO
 									+ butNum);
+							player1Shots++;
+							player1Hits++;
 							sentMessage = true;
 							break;
 						}
 					}
 				}
 				if (!sentMessage) {
-					System.out.println("It's a miss!");
 					player2.sendMessage(Protocol.AUROR + Protocol.STUPEFY
 							+ butNum);
 					player1.sendMessage(Protocol.RON + Protocol.STUPEFY
 							+ butNum);
+					player1Shots++;
 				}
 				sentMessage = false;
 			}
+			System.out.println("Game over homie");
 		}
 	}
 

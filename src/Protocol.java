@@ -112,15 +112,15 @@ public class Protocol {
 
 	public static String normalizeShipName(String name) {
 		if (name.equals(Protocol.AIRCRAFT_CARRIER))
-			return "Aircraft Carrier";
+			return "Death Star";
 		else if (name.equals(Protocol.BATTLESHIP))
-			return "Battleship";
+			return "Dreadnaught";
 		else if (name.equals(Protocol.SUBMARINE))
-			return "Submarine";
+			return "X-Wing";
 		else if (name.equals(Protocol.CRUISER))
-			return "Cruiser";
+			return "TIE Fighter";
 		else if (name.equals(Protocol.PATROL_BOAT))
-			return "Patrol Boat";
+			return "Speeder Bike";
 		else
 			return null;
 	}

@@ -27,11 +27,11 @@ public class BSAskShips extends JPanel {
 	private static final long serialVersionUID = 1929426850051553458L;
 	private JFrame frame;
 	private ArrayList<BSButton> clickedButtons;
-	JButton carrier = new JButton("Aircraft Carrier");
-	JButton battleship = new JButton("BattleShip");
-	JButton submarine = new JButton("Submarine");
-	JButton cruiser = new JButton("Cruiser");
-	JButton patrol = new JButton("Patrol Boat");
+	JButton carrier = new JButton("Death Star");
+	JButton battleship = new JButton("Dreadnaught");
+	JButton submarine = new JButton("X-Wing");
+	JButton cruiser = new JButton("TIE Fighter");
+	JButton patrol = new JButton("Speeder Bike");
 	JLabel errorText = new JLabel();
 	int shipPlaceCount;
 	private BattleShipClient client;
@@ -198,7 +198,7 @@ public class BSAskShips extends JPanel {
 	 * board Side Effects: creates a new JFrame object
 	 */
 	void initFrame() {
-		frame = new JFrame("Please place your ships, " + client.name + "!");
+		frame = new JFrame("Place your ships you must, " + client.name + "!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(this);
 		frame.setBounds(0, 0, 525, 700);
@@ -215,7 +215,6 @@ public class BSAskShips extends JPanel {
 		try {
 			mp3.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		frame.setVisible(false);

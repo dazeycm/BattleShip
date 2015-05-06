@@ -152,19 +152,6 @@ public class BattleShipGame {
 								gameOver = true;
 								break beforewhile;
 							}
-							// play sound effect
-							MP3 mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
-							// when the computation is done, stop playing it
-							try {
-								mp3.close();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// play from the beginning
-							mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
@@ -233,19 +220,6 @@ public class BattleShipGame {
 								gameOver = true;
 								break beforewhile;
 							}
-							// play sound effect
-							MP3 mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
-							// when the computation is done, stop playing it
-							try {
-								mp3.close();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// play from the beginning
-							mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
@@ -316,19 +290,6 @@ public class BattleShipGame {
 								gameOver = true;
 								break beforewhile;
 							}
-							// play sound effect
-							MP3 mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
-							// when the computation is done, stop playing it
-							try {
-								mp3.close();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// play from the beginning
-							mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
 							player1.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());
@@ -397,19 +358,6 @@ public class BattleShipGame {
 								gameOver = true;
 								break beforewhile;
 							}
-							// play sound effect
-							MP3 mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
-							// when the computation is done, stop playing it
-							try {
-								mp3.close();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							// play from the beginning
-							mp3 = new MP3();
-							mp3.play("sound/sunk.mp3");
 							player2.sendMessage(Protocol.AUROR
 									+ Protocol.CRUCIO + butNum + " "
 									+ Protocol.AVADAKEDAVRA + entry.getKey());

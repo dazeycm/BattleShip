@@ -200,13 +200,13 @@ public class GameOver extends JPanel {
 		double acc1 = hits_1 / shots_1;
 		double acc2 = hits_2 / shots_2;
 
-		accuracy1 = new JLabel(String.format("Accuracy: %.2f", acc1),
+		accuracy1 = new JLabel(String.format("Accuracy: %d%%", (int)acc1 * 100),
 				SwingConstants.CENTER);
 		accuracy1.setBounds(0, 190, 200, 30);
 		accuracy1.setFont(new Font("Impact", Font.PLAIN, 20));
 		accuracy1.setForeground(new Color(84, 84, 84));
 
-		accuracy2 = new JLabel(String.format("Accuracy: %.2f", acc2),
+		accuracy2 = new JLabel(String.format("Accuracy: %d%%", (int)acc2 * 100),
 				SwingConstants.CENTER);
 		accuracy2.setBounds(200, 190, 200, 30);
 		accuracy2.setFont(new Font("Impact", Font.PLAIN, 20));

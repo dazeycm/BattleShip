@@ -279,6 +279,7 @@ public class BSAskShips extends JPanel {
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.AIRCRAFT_CARRIER
 								+ toNumFormat(clickedButtons));
+						setShipColor();
 						clickedButtons.clear();
 						remove(carrier);
 						revalidate();
@@ -298,6 +299,7 @@ public class BSAskShips extends JPanel {
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.BATTLESHIP
 								+ toNumFormat(clickedButtons));
+						setShipColor();
 						clickedButtons.clear();
 						remove(battleship);
 						revalidate();
@@ -317,6 +319,7 @@ public class BSAskShips extends JPanel {
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.SUBMARINE
 								+ toNumFormat(clickedButtons));
+						setShipColor();
 						clickedButtons.clear();
 						remove(submarine);
 						revalidate();
@@ -335,6 +338,7 @@ public class BSAskShips extends JPanel {
 						}
 						client.sendMessage(Protocol.HOGWARTS + Protocol.CRUISER
 								+ toNumFormat(clickedButtons));
+						setShipColor();
 						clickedButtons.clear();
 						remove(cruiser);
 						revalidate();
@@ -354,6 +358,7 @@ public class BSAskShips extends JPanel {
 						client.sendMessage(Protocol.HOGWARTS
 								+ Protocol.PATROL_BOAT
 								+ toNumFormat(clickedButtons));
+						setShipColor();
 						clickedButtons.clear();
 						remove(patrol);
 						revalidate();
@@ -425,6 +430,14 @@ public class BSAskShips extends JPanel {
 				sb.append(b.butNum + ",");
 			}
 			return sb.toString();
+		}
+		
+		public void setShipColor()	{
+			for(BSButton button : clickedButtons){
+				button.setBackground(new Color(200, 200, 200));
+				button.setOpaque(true);
+				button.setBorderPainted(false);
+			}
 		}
 
 	}

@@ -400,11 +400,7 @@ public class BattleShipGame {
 			player2Message = player2.receiveMessage();
 		} while (!player2Message.equals(Protocol.YES) && !player2Message.equals(Protocol.NO));
 		
-		System.out.println(player1Message);
-		System.out.println(player2Message);
-		
 		if(player1Message.equals(Protocol.YES) && player2Message.equals(Protocol.YES))	{
-			System.out.println("playing another");
 		} else {
 			bss.playAnother = false;
 			System.exit(0);

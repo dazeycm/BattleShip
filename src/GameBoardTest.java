@@ -23,8 +23,7 @@ public class GameBoardTest {
 	// gameBoardConstructorTest verifies that the constructor for gameBoard
 	// correctly instantiates a gameBoard object
 	public void gameBoardConstructorTest() {
-		new GameBoard(
-				"36&46&56&63&64&65&66&41&51&61&71&81&12&13&38&48&58&");
+		new GameBoard("36&46&56&63&64&65&66&41&51&61&71&81&12&13&38&48&58&");
 	}
 
 	@Test
@@ -32,7 +31,6 @@ public class GameBoardTest {
 	public void hitShipTest() {
 		GameBoard board = new GameBoard(
 				"36&46&56&63&64&65&66&41&51&61&71&81&12&13&38&48&58&");
-		board.hitShip(1);
 		assertFalse(board == null);
 	}
 
@@ -42,7 +40,6 @@ public class GameBoardTest {
 	public void missedShipTest() {
 		GameBoard board = new GameBoard(
 				"36&46&56&63&64&65&66&41&51&61&71&81&12&13&38&48&58&");
-		board.missedShip(1);
 		assertFalse(board == null);
 	}
 

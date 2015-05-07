@@ -420,6 +420,9 @@ public class BSAskShips extends JPanel {
 					}
 				}
 			}
+			if (!(allNextTo && (vertical || horizontal)))
+				errorText.setText("Ships must be place in a straight line with no spaces!");
+				
 			return allNextTo && (vertical || horizontal);
 		}
 
